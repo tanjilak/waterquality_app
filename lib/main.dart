@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 
 void main() {
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: [
-    SystemUiOverlay.top
+    SystemUiOverlay.bottom
   ]);
   runApp(const MyApp());
 }
