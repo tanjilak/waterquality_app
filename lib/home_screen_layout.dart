@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:waterquality_app/constants.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:waterquality_app/button.dart';
+
+import 'button2.dart';
 
 class HomeScreenLayout extends StatelessWidget {
   const HomeScreenLayout({Key? key}) : super(key: key);
@@ -50,27 +53,11 @@ class HomeScreenLayout extends StatelessWidget {
               ),
               ),
             ),
-            Container(
-              child: ElevatedButton(
-                onPressed: () {},
-                child: const Text(
-                  "Sign In",
-                  style: TextStyle(
-                    color: Colors.white,
-                  ),
-                ),
-                  style: ButtonStyle(
-                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                      RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(18.0),
-                      ),
-                    ),
-                    backgroundColor: MaterialStateProperty.all<Color>(primarycolor),
-                  ),
-            ),
-            ),
+            Button(size: size),
+            Button2(size: size),
           ],
       ),
       );
   }
 }
+
