@@ -13,7 +13,7 @@ class Button2 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Positioned(
       top: 430,
-      width: size.width * 0.8,
+      width: 280,
       child: ElevatedButton(
         onPressed: () {},
         child: const Text(

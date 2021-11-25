@@ -14,7 +14,7 @@ class Button extends StatelessWidget {
   Widget build(BuildContext context) {
     return Positioned(
       top: 370,
-      width: size.width * 0.8,
+      width: 280,
       child: ElevatedButton(
         onPressed: () {Navigator.push(
             context,

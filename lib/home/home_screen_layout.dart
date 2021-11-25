@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:waterquality_app/constants.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:waterquality_app/button.dart';
+import 'package:waterquality_app/home/button.dart';
 
-import '../button2.dart';
+import 'button2.dart';
 
 class HomeScreenLayout extends StatelessWidget {
   const HomeScreenLayout({Key? key}) : super(key: key);

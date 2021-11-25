@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:waterquality_app/constants.dart';
+import 'package:waterquality_app/signin/email.dart';
+import 'package:waterquality_app/password.dart';
+import 'package:waterquality_app/sign_in_button.dart';
 
 class SignInLayout extends StatelessWidget {
   const SignInLayout({Key? key,}) : super(key: key);
@@ -41,24 +44,12 @@ class SignInLayout extends StatelessWidget {
           ),
           ),
         ),
-        Positioned(
-          child: TextField(
-           decoration: InputDecoration(
-             filled: true,
-              fillColor: textcolor,
-              hintText: "Email",
-             hintStyle: const TextStyle(
-               color: hintcolor,
-             ),
-            focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(20.0),
-              borderSide: const BorderSide(color: transparent),
-            ),
-            ),
-          ),
-        ),
+        const Email(),
+        const Password(),
+        Button(size: size),
       ],
       ),
     );
   }
 }
+
