@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:waterquality_app/home_screen.dart';
+import 'package:waterquality_app/home/home_screen.dart';
 import 'package:waterquality_app/constants.dart';
 import 'package:flutter/services.dart';
 

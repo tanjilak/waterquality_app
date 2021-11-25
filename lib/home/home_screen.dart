@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:waterquality_app/home_screen_layout.dart';
+import 'package:waterquality_app/home/home_screen_layout.dart';
 
 //home screen
 class HomeScreen extends StatelessWidget{
