@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:waterquality_app/constants.dart';
-import 'package:waterquality_app/signin/email.dart';
-import 'package:waterquality_app/signin/password.dart';
+import 'package:waterquality_app/email.dart';
+import 'package:waterquality_app/password.dart';
 import 'package:waterquality_app/signin/sign_in_button.dart';
 import 'package:waterquality_app/background.dart';
-import 'package:waterquality_app/signup.dart';
+import 'package:waterquality_app/signup/signup.dart';
 
 class SignInLayout extends StatelessWidget {
   const SignInLayout({Key? key,}) : super(key: key);
