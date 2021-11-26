@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:waterquality_app/constants.dart';
+import 'package:waterquality_app/signup.dart';
 
 class Button2 extends StatelessWidget {
   const Button2({
@@ -15,7 +16,16 @@ class Button2 extends StatelessWidget {
       top: 430,
       width: 280,
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) {
+                return const SignUp();
+              },
+            ),
+          );
+        },
         child: const Text(
           "Sign Up",
           style: TextStyle(

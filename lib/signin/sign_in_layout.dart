@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:waterquality_app/constants.dart';
 import 'package:waterquality_app/signin/email.dart';
-import 'package:waterquality_app/password.dart';
-import 'package:waterquality_app/sign_in_button.dart';
+import 'package:waterquality_app/signin/password.dart';
+import 'package:waterquality_app/signin/sign_in_button.dart';
+import 'package:waterquality_app/background.dart';
+import 'package:waterquality_app/signup.dart';
 
 class SignInLayout extends StatelessWidget {
   const SignInLayout({Key? key,}) : super(key: key);
@@ -16,22 +18,8 @@ class SignInLayout extends StatelessWidget {
       child: Stack(
       alignment: Alignment.center,
       children: <Widget>[
-        Positioned(
-          top: 0,
-          left: 0,
-          child: Image.asset(
-            "assets/images/img.png",
-            width: size.width * 0.5,
-          ),
-        ),
-        Positioned(
-          top: 100,
-          right: 0,
-          child: Image.asset(
-            "assets/images/img_2.png",
-            width: size.width * 0.32,
-          ),
-        ),
+        Background1(size: size),
+        Background2(size: size),
         const Positioned(
           top: 117,
           left: 15,
@@ -47,9 +35,44 @@ class SignInLayout extends StatelessWidget {
         const Email(),
         const Password(),
         Button(size: size),
+        Positioned(
+          top: 430,
+          child: GestureDetector(
+                onTap: () {},
+               child: const Text("Forgot Password?",
+                 style: TextStyle(
+                      color: hintsecondarycolor,
+                   fontWeight: FontWeight.bold,
+                 ),
+               ),
+          ),
+        ),
+        Positioned(
+          top: 460,
+          child: GestureDetector(
+            onTap: () {Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) {
+                  return const SignUp();
+                },
+              ),
+            );
+            },
+            child: const Text("Sign Up",
+              style: TextStyle(
+                color: secondarycolor,
+                fontWeight: FontWeight.bold,
+                fontSize: 20,
+              )
+            ),
+          ),
+        ),
       ],
       ),
     );
   }
 }
+
+
 

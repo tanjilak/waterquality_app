@@ -37,8 +37,8 @@ class HomeScreenLayout extends StatelessWidget {
               top: 104,
               left: 20,
               child: SvgPicture.asset(
-                "assets/icons/beverage.svg",
-                height: size.height * 0.3,
+                "assets/icons/faucet.svg",
+                height: size.height * 0.26,
               ),
             ),
             const Positioned(
