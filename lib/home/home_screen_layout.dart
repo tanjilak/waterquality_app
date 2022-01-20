@@ -24,7 +24,7 @@ class HomeScreenLayout extends StatelessWidget {
                 child: Image.asset("assets/images/img_1.png")
             ),
             const Positioned(
-              top: 25,
+              top: 29,
               child: Text(
                 "SMART WATER QUALITY MONITOR",
                 style: TextStyle(
@@ -42,7 +42,7 @@ class HomeScreenLayout extends StatelessWidget {
               ),
             ),
             const Positioned(
-              top: 300,
+              bottom: 430,
               left: 20,
               child: Text(
                 "Welcome!",

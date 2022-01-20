@@ -13,7 +13,7 @@ class Button extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      top: 370,
+      bottom: 370,
       width: 280,
       child: ElevatedButton(
         onPressed: () {Navigator.push(
@@ -39,7 +39,7 @@ class Button extends StatelessWidget {
             ),
             backgroundColor: MaterialStateProperty.all<Color>(primarycolor),
             padding: MaterialStateProperty.all<EdgeInsets>(
-                const EdgeInsets.all(10))
+                const EdgeInsets.all(13))
         ),
       ),
     );
