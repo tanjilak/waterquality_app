@@ -33,14 +33,10 @@ class Button2 extends StatelessWidget {
           ),
         ),
         style: ButtonStyle(
-            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-              RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(18.0),
-              ),
-            ),
+
             backgroundColor: MaterialStateProperty.all<Color>(primarycolor),
             padding: MaterialStateProperty.all<EdgeInsets>(
-                const EdgeInsets.all(13))
+                const EdgeInsets.all(15))
         ),
       ),
     );

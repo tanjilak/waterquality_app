@@ -23,18 +23,9 @@ class HomeScreenLayout extends StatelessWidget {
                 right: 0,
                 child: Image.asset("assets/images/img_1.png")
             ),
-            const Positioned(
-              top: 29,
-              child: Text(
-                "SMART WATER QUALITY MONITOR",
-                style: TextStyle(
-                  color: secondarycolor,
-                  fontWeight: FontWeight.bold,
-              ),
-            ),
-            ),
+
             Positioned(
-              top: 104,
+              top: 120,
               left: 20,
               child: SvgPicture.asset(
                 "assets/icons/faucet.svg",
@@ -42,7 +33,7 @@ class HomeScreenLayout extends StatelessWidget {
               ),
             ),
             const Positioned(
-              bottom: 430,
+              bottom: 440,
               left: 20,
               child: Text(
                 "Welcome!",
@@ -55,6 +46,16 @@ class HomeScreenLayout extends StatelessWidget {
             ),
             Button(size: size),
             Button2(size: size),
+            const Positioned(
+              bottom: 25,
+              child: Text(
+                "SMART WATER QUALITY MONITOR",
+                style: TextStyle(
+                  color: secondarycolor,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
           ],
       ),
       );

@@ -66,55 +66,16 @@ class _SignUpLayoutState extends State<SignUpLayout> {
               onSaved: (value){
                 emailForm.text = value!;
               },
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
 
                 filled: true,
                 fillColor: textcolor,
                 hintText: "Email",
-                hintStyle: const TextStyle(
+                hintStyle: TextStyle(
                   color: hintcolor,
-                  fontWeight: FontWeight.bold,
+
                 ),
                 border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(20.0),
-                  borderSide: BorderSide.none,
-                ),
-              ),
-            ),
-          ),
-        ),
-
-        //name
-        Positioned(
-          top: 290,
-          child: Container(
-            width: 280,
-            decoration: BoxDecoration(
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.withOpacity(0.8),
-                  blurRadius: 20,
-                  spreadRadius: -20,
-                  offset: const Offset(0, 19),
-                ),
-              ],
-            ),
-            child: TextFormField(
-              controller: name,
-              onSaved: (value){
-                name.text = value!;
-              },
-              decoration: InputDecoration(
-
-                filled: true,
-                fillColor: textcolor,
-                hintText: "Name",
-                hintStyle: const TextStyle(
-                  color: hintcolor,
-                  fontWeight: FontWeight.bold,
-                ),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(20.0),
                   borderSide: BorderSide.none,
                 ),
               ),
@@ -125,7 +86,7 @@ class _SignUpLayoutState extends State<SignUpLayout> {
 
               //password
         Positioned(
-          top: 380,
+          top: 290,
           child: Container(
             width: 280,
             decoration: BoxDecoration(
@@ -145,16 +106,15 @@ class _SignUpLayoutState extends State<SignUpLayout> {
               },
               obscureText: true,
               obscuringCharacter: "*",
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 filled: true,
                 fillColor: textcolor,
                 hintText: "Password",
-                hintStyle: const TextStyle(
+                hintStyle: TextStyle(
                   color: hintcolor,
-                  fontWeight: FontWeight.bold,
+
                 ),
                 border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(20.0),
                   borderSide: BorderSide.none,
                 ),
               ),
@@ -164,7 +124,7 @@ class _SignUpLayoutState extends State<SignUpLayout> {
 
               //SIGN UP BUTTON
       Positioned(
-        top: 465,
+        top: 370,
         width: 280,
         child: ElevatedButton(
           onPressed: () async {
@@ -189,20 +149,16 @@ class _SignUpLayoutState extends State<SignUpLayout> {
             ),
           ),
           style: ButtonStyle(
-              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(18.0),
-                ),
-              ),
+
               backgroundColor: MaterialStateProperty.all<Color>(primarycolor),
               padding: MaterialStateProperty.all<EdgeInsets>(
-                  const EdgeInsets.all(13))
+                  const EdgeInsets.all(15))
           ),
         ),
       ),
 
               Positioned(
-                top: 520,
+                top: 430,
                 left: 25,
                 child: GestureDetector(
                   onTap: () {Navigator.push(
@@ -222,6 +178,7 @@ class _SignUpLayoutState extends State<SignUpLayout> {
                   ),
                 ),
               ),
+
             ],
         ),
     );

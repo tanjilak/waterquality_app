@@ -31,6 +31,7 @@ final TextEditingController passwordController = TextEditingController();
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return SizedBox(
+
       width: double.infinity,
       height: size.height,
       child: Stack(
@@ -75,16 +76,16 @@ final TextEditingController passwordController = TextEditingController();
                 emailController.text = value!;
               },
               textInputAction: TextInputAction.next,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 filled: true,
                 fillColor: textcolor,
                 hintText: "Email",
-                hintStyle: const TextStyle(
+                hintStyle: TextStyle(
                   color: hintcolor,
-                  fontWeight: FontWeight.bold,
+
                 ),
                 border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(20.0),
+
                   borderSide: BorderSide.none,
                 ),
               ),
@@ -124,16 +125,16 @@ final TextEditingController passwordController = TextEditingController();
               },
               obscureText: true,
               obscuringCharacter: "*",
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 filled: true,
                 fillColor: textcolor,
                 hintText: "Password",
-                hintStyle: const TextStyle(
+                hintStyle: TextStyle(
                   color: hintcolor,
-                  fontWeight: FontWeight.bold,
+
                 ),
                 border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(20.0),
+
                   borderSide: BorderSide.none,
                 ),
               ),
@@ -162,14 +163,10 @@ final TextEditingController passwordController = TextEditingController();
             ),
           ),
           style: ButtonStyle(
-              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(18.0),
-                ),
-              ),
+
               backgroundColor: MaterialStateProperty.all<Color>(primarycolor),
               padding: MaterialStateProperty.all<EdgeInsets>(
-                  const EdgeInsets.all(13))
+                  const EdgeInsets.all(15))
           ),
         ),
       ),
@@ -212,6 +209,7 @@ final TextEditingController passwordController = TextEditingController();
             ),
           ),
         ),
+
       ],
       ),
     );
