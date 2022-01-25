@@ -51,13 +51,13 @@ class _SignUpLayoutState extends State<SignUpLayout> {
           top: 200,
           child: Container(
             width: 280,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               boxShadow: [
                 BoxShadow(
-                  color: Colors.grey.withOpacity(0.8),
-                  blurRadius: 20,
-                  spreadRadius: -20,
-                  offset: const Offset(0, 19),
+                  color: Color(0x40000000),
+                  blurRadius: 4,
+                  spreadRadius: 0,
+                  offset: Offset(0, 4),
                 ),
               ],
             ),
@@ -89,13 +89,13 @@ class _SignUpLayoutState extends State<SignUpLayout> {
           top: 290,
           child: Container(
             width: 280,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               boxShadow: [
                 BoxShadow(
-                  color: Colors.grey.withOpacity(0.8),
-                  blurRadius: 20,
-                  spreadRadius: -20,
-                  offset: const Offset(0, 19),
+                  color: Color(0x40000000),
+                  blurRadius: 4,
+                  spreadRadius: 0,
+                  offset: Offset(0, 4),
                 ),
               ],
             ),

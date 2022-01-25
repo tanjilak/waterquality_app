@@ -8,3 +8,4 @@ const hintcolor = Color(0x4D000000);
 const transparent = Color(0x00000000);
 const hintsecondarycolor = Color(0x995FADD9);
 const backgroundcolor = Color(0xffffffff);
+const border =Color(0x9900738C);
