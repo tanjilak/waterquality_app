@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:waterquality_app/constants.dart';
+import 'package:waterquality_app/entry_page.dart';
+import 'package:waterquality_app/home/home_screen.dart';
+
+
+import 'device.dart';
 
 
 class DisplayPage extends StatefulWidget{
@@ -14,14 +19,92 @@ class _DisplayPageState extends State<DisplayPage> {
 
     return Scaffold(
         resizeToAvoidBottomInset : false,
+        appBar: AppBar(
+          backgroundColor: hintsecondarycolor,
+          toolbarHeight: 40,
+        ),
+        drawer: Drawer(
+          child: ListView(
+          padding: EdgeInsets.zero,
+            children:  [
+              DrawerHeader(
+                decoration: const BoxDecoration(
+                  color: hintsecondarycolor,
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: const <Widget>[
+                    SizedBox(height: 20,),
+                    Text("Name", style: TextStyle(
+                      color: Colors.black54, fontWeight: FontWeight.w700,
+                    ),),
+                    SizedBox(height:10,),
+                    Text("Email", style: TextStyle(
+                      color: Colors.black54, fontWeight: FontWeight.w700,
+                    ),),
+                  ],
+                ),
+              ),
+              ListTile(
+                title: const Text('Home', style: TextStyle(
+                  color: Colors.black54, fontWeight: FontWeight.w500,
+                ),),
+                onTap: (){Navigator.pop(context);},
+              ),
+              ListTile(
+                title: const Text('Settings', style: TextStyle(
+                  color: Colors.black54, fontWeight: FontWeight.w500,
+                ),),
+                onTap: () { Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return const EntryPage();
+                    },
+                  ),
+                );
+
+                },
+              ),
+              ListTile(
+                title: const Text('Device', style: TextStyle(
+                  color: Colors.black54, fontWeight: FontWeight.w500,
+                ),),
+                onTap: (){ Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return const DeviceDetails();
+                    },
+                  ),
+                ); },
+              ),
+              ListTile(
+                title: const Text('Sign Out', style: TextStyle(
+                  color: Colors.black54, fontWeight: FontWeight.w500,
+                ),),
+                onTap: (){
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return const HomeScreen();
+                      },
+                    ),
+                  );
+                },
+              )
+            ],
+          ),
+        ),
         body:
+
         DefaultTabController(
           length: 5,
           child: Column(
             children:<Widget>[
-
               const SizedBox(
-                height: 70,
+                height: 10,
               ),
               Container(
               constraints: const BoxConstraints.expand(height: 50),
@@ -104,6 +187,17 @@ class _DisplayPageState extends State<DisplayPage> {
                          ),
 
                          child: const Text("ph"),
+                       ),
+                       const SizedBox(height: 20,),
+                       OutlinedButton(
+                         onPressed: () {},
+                         child: const Text("Update",
+                           style: TextStyle(
+                             color: secondarycolor,
+                             fontWeight: FontWeight.bold,
+                             fontSize: 18,
+                           ),
+                         ),
                        ),
                      ],
 

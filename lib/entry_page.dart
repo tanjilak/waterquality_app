@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:waterquality_app/device.dart';
+import 'package:waterquality_app/display.dart';
 
 import 'constants.dart';
 
@@ -18,7 +19,6 @@ class _EntryPageState extends State<EntryPage> {
 
       resizeToAvoidBottomInset : false,
       body:
-
 
       SingleChildScrollView(
         child: Padding(
@@ -93,21 +93,7 @@ class _EntryPageState extends State<EntryPage> {
                   height: 50,
                 ),
 
-              OutlinedButton(
-                child: const Text(
-                  "Save All",
-                  style: TextStyle(
-                    color: primarycolor,
-                  ),
-                ),
-                onPressed: () {},
-                style: OutlinedButton.styleFrom(
-                  padding: const EdgeInsets.all(20),
-                ),
-              ),
-                const SizedBox(
-                  height: 20,
-                ),
+
               OutlinedButton(
                 onPressed: () { Navigator.push(
                   context,
@@ -116,7 +102,8 @@ class _EntryPageState extends State<EntryPage> {
                       return const DeviceDetails();
                     },
                   ),
-                );  },
+                );
+                },
                 child: const Text("Connect to a Device",
 
                   style: TextStyle(
@@ -127,8 +114,32 @@ class _EntryPageState extends State<EntryPage> {
 
                 ),
               ),
+                const SizedBox(
+                  height: 20,
+                ),
+              OutlinedButton(
+                child: const Text(
+                  "Save All",
+                  style: TextStyle(
+                    color: primarycolor,
+                  ),
+                ),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return const DisplayPage();
+                      },
+                    ),
+                  );
+                },
+                style: OutlinedButton.styleFrom(
+                  padding: const EdgeInsets.all(20),
+                ),
+              ),
               const SizedBox(
-                height: 100,
+                height: 20,
               ),
               ElevatedButton(
                 onPressed: () {  },

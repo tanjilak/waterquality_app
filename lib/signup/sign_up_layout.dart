@@ -17,13 +17,13 @@ class _SignUpLayoutState extends State<SignUpLayout> {
 
   final _formKey = GlobalKey<FormState>();
 
-  final TextEditingController name = TextEditingController();
   final TextEditingController emailForm = TextEditingController();
   final TextEditingController passwordForm = TextEditingController();
 
 
   @override
   Widget build(BuildContext context) {
+    User? user = FirebaseAuth.instance.currentUser;
 
     Size size = MediaQuery.of(context).size;
     return SizedBox(
@@ -101,6 +101,7 @@ class _SignUpLayoutState extends State<SignUpLayout> {
             ),
             child: TextFormField(
               controller: passwordForm,
+
               onSaved: (value){
                 passwordForm.text = value!;
               },

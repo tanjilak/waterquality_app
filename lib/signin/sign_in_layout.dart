@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:waterquality_app/constants.dart';
 import 'package:waterquality_app/background.dart';
+import 'package:waterquality_app/display.dart';
 import 'package:waterquality_app/signup/signup.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:waterquality_app/entry_page.dart';
+
 
 import '../entry_page.dart';
 
@@ -151,7 +152,7 @@ final TextEditingController passwordController = TextEditingController();
             context,
             MaterialPageRoute(
               builder: (context) {
-                return const EntryPage();
+                return const DisplayPage();
               },
             ),
           );
