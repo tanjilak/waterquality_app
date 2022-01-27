@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "867540118256",
+    "project_id": "waterqualityapp-6e58d",
+    "storage_bucket": "waterqualityapp-6e58d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:867540118256:android:692e8628b4b02e86c0f035",
+        "android_client_info": {
+          "package_name": "com.example.waterqualityapp.waterquality_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "867540118256-nuj319c95lfns65vdudasvoi9bfv69ua.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.waterqualityapp.waterquality_app",
+            "certificate_hash": "b0cee75c6a48c69a5771d0a0900a5752f5fd29c6"
+          }
+        },
+        {
+          "client_id": "867540118256-46f329hrmj9gmlroiqni8dd74i6u2pls.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCj3lGhvntEG2AFOTIdbcn4bniU7l2AtB0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "867540118256-46f329hrmj9gmlroiqni8dd74i6u2pls.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
