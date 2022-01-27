@@ -3,13 +3,8 @@ import 'package:waterquality_app/constants.dart';
 import 'package:waterquality_app/background.dart';
 import 'package:waterquality_app/display.dart';
 import 'package:waterquality_app/signup/signup.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 
-
-import '../entry_page.dart';
 
 class SignInLayout extends StatefulWidget {
   const SignInLayout({Key? key,}) : super(key: key);
@@ -112,15 +107,7 @@ final TextEditingController passwordController = TextEditingController();
             ),
             child: TextFormField(
               controller: passwordController,
-              validator: (value) {
-                RegExp regex = RegExp(r'^.{6,}$');
-                if (value!.isEmpty) {
-                  return ("Enter a valid password");
-                }
-                if (!regex.hasMatch(value)) {
-                  return ("Enter a valid password");
-                }
-              },
+
               onSaved: (value){
                 passwordController.text = value!;
               },
