@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:waterquality_app/constants.dart';
 import 'package:waterquality_app/entry_page.dart';
@@ -83,7 +84,9 @@ class _DisplayPageState extends State<DisplayPage> {
                 title: const Text('Sign Out', style: TextStyle(
                   color: Colors.black54, fontWeight: FontWeight.w500,
                 ),),
-                onTap: (){
+                onTap: () async {
+                  await FirebaseAuth.instance.signOut();
+
                   Navigator.push(
                     context,
                     MaterialPageRoute(

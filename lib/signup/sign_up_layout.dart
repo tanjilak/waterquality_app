@@ -18,9 +18,6 @@ class _SignUpLayoutState extends State<SignUpLayout> {
   final TextEditingController passwordForm = TextEditingController();
   final GlobalKey<FormState> _key = GlobalKey<FormState>();
   String errorMessage = '';
-  bool isLoading = false;
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -54,14 +51,7 @@ class _SignUpLayoutState extends State<SignUpLayout> {
           child: Container(
             width: 280,
             decoration: const BoxDecoration(
-              boxShadow: [
-                BoxShadow(
-                  color: Color(0x40000000),
-                  blurRadius: 4,
-                  spreadRadius: 0,
-                  offset: Offset(0, 4),
-                ),
-              ],
+
             ),
             child: TextFormField(
               controller: emailForm,
@@ -79,7 +69,7 @@ class _SignUpLayoutState extends State<SignUpLayout> {
 
                 ),
                 border: OutlineInputBorder(
-                  borderSide: BorderSide.none,
+                  borderSide: BorderSide(color: Colors.black54),
                 ),
               ),
             ),
@@ -93,14 +83,7 @@ class _SignUpLayoutState extends State<SignUpLayout> {
           child: Container(
             width: 280,
             decoration: const BoxDecoration(
-              boxShadow: [
-                BoxShadow(
-                  color: Color(0x40000000),
-                  blurRadius: 4,
-                  spreadRadius: 0,
-                  offset: Offset(0, 4),
-                ),
-              ],
+
             ),
             child: TextFormField(
               controller: passwordForm,
@@ -120,7 +103,7 @@ class _SignUpLayoutState extends State<SignUpLayout> {
 
                 ),
                 border: OutlineInputBorder(
-                  borderSide: BorderSide.none,
+                  borderSide: BorderSide(color: Colors.black54),
                 ),
               ),
             ),
@@ -135,7 +118,7 @@ class _SignUpLayoutState extends State<SignUpLayout> {
           child: ElevatedButton(
             onPressed: () async {
               setState((){
-              isLoading = true;
+
                   errorMessage ='';});
               if(_key.currentState!.validate()) {
                 try {
@@ -157,12 +140,10 @@ class _SignUpLayoutState extends State<SignUpLayout> {
                 }
 
               }
-              setState(() => isLoading = false);
+
             },
 
-              child: isLoading
-              ? const CircularProgressIndicator(color: Colors.white)
-              : const Text(
+              child: const Text(
                 "Sign Up",
                 style: TextStyle(
                   color: Colors.white,
@@ -239,7 +220,8 @@ String? validatePassword(String? formPassword){
   RegExp regex = RegExp(pattern);
 
   if(!regex.hasMatch(formPassword)){
-    return 'Password needs to be at least 6 characters; Add an uppercase letter, a symbol, and a number in password';
+    return 'Password needs to be at least 6 characters; '
+        'Add an uppercase letter, a symbol, and a number in password';
   }
   return null;
 }

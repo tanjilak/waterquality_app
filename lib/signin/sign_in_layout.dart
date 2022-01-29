@@ -14,25 +14,26 @@ class SignInLayout extends StatefulWidget {
 }
 
 class _SignInLayoutState extends State<SignInLayout> {
-  final _formKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> _key = GlobalKey<FormState>();
 
 final TextEditingController emailController = TextEditingController();
 final TextEditingController passwordController = TextEditingController();
-
-//firebase
-  final _auth = FirebaseAuth.instance;
+  String errorMessage = '';
+  bool isLoading = false;
 
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-    return SizedBox(
+    User? user = FirebaseAuth.instance.currentUser;
 
-      width: double.infinity,
-      height: size.height,
+    Size size = MediaQuery.of(context).size;
+    return Scaffold(
+
+      body: Form(
+        key: _key,
       child: Stack(
       alignment: Alignment.center,
-        key: _formKey,
+
       children: <Widget>[
         Background1(size: size),
         Background2(size: size),
@@ -56,18 +57,12 @@ final TextEditingController passwordController = TextEditingController();
           child: Container(
             width: 280,
             decoration: const BoxDecoration(
-              boxShadow: [
-                BoxShadow(
-                  color: Color(0x40000000),
-                  blurRadius: 4,
-                  spreadRadius: 0,
-                  offset: Offset(0, 4),
-                ),
-              ],
+
             ),
             child: TextFormField(
               autofocus: false,
               controller: emailController,
+              validator: validateEmail,
               onSaved: (value){
                 emailController.text = value!;
               },
@@ -82,7 +77,7 @@ final TextEditingController passwordController = TextEditingController();
                 ),
                 border: OutlineInputBorder(
 
-                  borderSide: BorderSide.none,
+                  borderSide: BorderSide(color: Colors.black54),
                 ),
               ),
             ),
@@ -96,18 +91,11 @@ final TextEditingController passwordController = TextEditingController();
           child: Container(
             width: 280,
             decoration: const BoxDecoration(
-              boxShadow: [
-                BoxShadow(
-                  color: Color(0x40000000),
-                  blurRadius: 4,
-                  spreadRadius: 0,
-                  offset: Offset(0, 4),
-                ),
-              ],
+
             ),
             child: TextFormField(
               controller: passwordController,
-
+              validator: validatePassword,
               onSaved: (value){
                 passwordController.text = value!;
               },
@@ -123,7 +111,7 @@ final TextEditingController passwordController = TextEditingController();
                 ),
                 border: OutlineInputBorder(
 
-                  borderSide: BorderSide.none,
+                  borderSide: BorderSide(color: Colors.black54),
                 ),
               ),
             ),
@@ -135,14 +123,34 @@ final TextEditingController passwordController = TextEditingController();
         top: 370,
         width: 280,
         child: ElevatedButton(
-          onPressed: () {Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) {
-                return const DisplayPage();
-              },
-            ),
-          );
+          onPressed: () async {
+            setState((){
+              errorMessage ='';});
+
+          if(_key.currentState!.validate()) {
+             try {
+              final user = await FirebaseAuth.instance.signInWithEmailAndPassword(
+                 email: emailController.text,
+                 password: passwordController.text,
+               );
+
+               Navigator.push(
+                 context,
+                 MaterialPageRoute(
+                   builder: (context) {
+                     return const DisplayPage();
+                   },
+                 ),
+               );
+             } on FirebaseAuthException catch(error){
+               errorMessage = error.message!;
+
+
+             }
+
+
+          }
+
           },
           child: const Text(
             "Sign In",
@@ -154,7 +162,7 @@ final TextEditingController passwordController = TextEditingController();
 
               backgroundColor: MaterialStateProperty.all<Color>(primarycolor),
               padding: MaterialStateProperty.all<EdgeInsets>(
-                  const EdgeInsets.all(15))
+                  const EdgeInsets.all(15)),
           ),
         ),
       ),
@@ -198,13 +206,52 @@ final TextEditingController passwordController = TextEditingController();
           ),
         ),
 
+        Positioned(
+          top: 490,
+          child:  Container(
+            height: 200,
+            width: 280,
+            child: Text(errorMessage,
+            style: const TextStyle(
+              color: Colors.red,
+            ),),
+          ),
+        ),
+
       ],
+      ),
       ),
     );
   }
 
+}
 
+String? validateEmail(String? formEmail){
+  if (formEmail == null || formEmail.isEmpty) {
+    return 'Please enter an Email Address';
+  }
 
+  String pattern = r'\w+@\w+\.\w+';
+  RegExp regex = RegExp(pattern);
+
+  if(!regex.hasMatch(formEmail)) {
+    return 'Invalid Email Address';
+  }
+  return null;
 
 }
 
+String? validatePassword(String? formPassword){
+  if (formPassword == null || formPassword.isEmpty){
+    return 'Please enter a Password';
+  }
+
+  String pattern = r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{6,}$';
+  RegExp regex = RegExp(pattern);
+
+  if(!regex.hasMatch(formPassword)){
+    return 'Password needs to be at least 6 characters; '
+        'Add an uppercase letter, a symbol, and a number in password';
+  }
+  return null;
+}
