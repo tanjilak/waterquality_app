@@ -19,7 +19,6 @@ class _SignInLayoutState extends State<SignInLayout> {
 final TextEditingController emailController = TextEditingController();
 final TextEditingController passwordController = TextEditingController();
   String errorMessage = '';
-  bool isLoading = false;
 
 
   @override
@@ -148,7 +147,6 @@ final TextEditingController passwordController = TextEditingController();
 
              }
 
-
           }
 
           },
@@ -208,7 +206,7 @@ final TextEditingController passwordController = TextEditingController();
 
         Positioned(
           top: 490,
-          child:  Container(
+          child:  SizedBox(
             height: 200,
             width: 280,
             child: Text(errorMessage,
