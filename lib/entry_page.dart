@@ -14,6 +14,7 @@ class EntryPage extends StatefulWidget{
 }
 
 class _EntryPageState extends State<EntryPage> {
+
   @override
   Widget build(BuildContext context){
 
@@ -36,9 +37,7 @@ class _EntryPageState extends State<EntryPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: const <Widget>[
                   SizedBox(height: 20,),
-                  Text("Name", style: TextStyle(
-                    color: Colors.black54, fontWeight: FontWeight.w700,
-                  ),),
+
                   SizedBox(height:10,),
                   Text("Email", style: TextStyle(
                     color: Colors.black54, fontWeight: FontWeight.w700,
@@ -50,20 +49,20 @@ class _EntryPageState extends State<EntryPage> {
               title: const Text('Home', style: TextStyle(
                 color: Colors.black54, fontWeight: FontWeight.w500,
               ),),
-              onTap: (){Navigator.pop(context);},
+              onTap: (){Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return const DisplayPage();
+                  },
+                ),
+              );},
             ),
             ListTile(
               title: const Text('Settings', style: TextStyle(
                 color: Colors.black54, fontWeight: FontWeight.w500,
               ),),
-              onTap: () { Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) {
-                    return const EntryPage();
-                  },
-                ),
-              );
+              onTap: () { Navigator.pop(context);
 
               },
             ),
@@ -121,23 +120,7 @@ class _EntryPageState extends State<EntryPage> {
               const SizedBox(
                 height: 50,
               ),
-              const Text(
-                "Name",
-                style: TextStyle(
-                  color: Colors.black54, fontWeight: FontWeight.w500,
-                ),
-              ),
-              TextFormField(
-                decoration: const InputDecoration(
-                  hintText: "Update Name",
-                  hintStyle: TextStyle(
-                    color: hintcolor,
-                    fontSize: 15,
-                  ),),
-              ),
-              const SizedBox(
-                height: 30,
-              ),
+
               const Text(
                 "Email",
                 style: TextStyle(
@@ -145,6 +128,7 @@ class _EntryPageState extends State<EntryPage> {
         ),
               ),
               TextFormField(
+                initialValue: FirebaseAuth.instance.currentUser?.email,
                 decoration: const InputDecoration(
                   hintText: "Update Email",
                   hintStyle: TextStyle(

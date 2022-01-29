@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:waterquality_app/constants.dart';
 import 'package:waterquality_app/background.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:waterquality_app/signin/sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:waterquality_app/entry_page.dart';
@@ -21,7 +22,7 @@ class _SignUpLayoutState extends State<SignUpLayout> {
 
   @override
   Widget build(BuildContext context) {
-    User? user = FirebaseAuth.instance.currentUser;
+
 
     Size size = MediaQuery.of(context).size;
     return Scaffold(
@@ -116,15 +117,25 @@ class _SignUpLayoutState extends State<SignUpLayout> {
           top: 370,
           width: 280,
           child: ElevatedButton(
-            onPressed: () async {
+
+            onPressed: () {
+
               setState((){
 
                   errorMessage ='';});
+
               if(_key.currentState!.validate()) {
+
                 try {
-                  await FirebaseAuth.instance
+                   FirebaseAuth.instance
                       .createUserWithEmailAndPassword(
-                    email: emailForm.text, password: passwordForm.text,);
+                    email: emailForm.text,
+                    password: passwordForm.text,
+                  ).then((value) {
+                      FirebaseFirestore.instance.collection('UserData').doc(value.user?.uid).set(
+                          {"email": value.user?.email,
+                          });
+                   });
 
                   Navigator.push(
                     context,
@@ -135,7 +146,10 @@ class _SignUpLayoutState extends State<SignUpLayout> {
                     ),
                   );
 
-                } on FirebaseAuthException catch(error){
+
+
+
+                } on FirebaseAuthException catch (error) {
                   errorMessage = error.message!;
                 }
 

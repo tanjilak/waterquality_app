@@ -33,9 +33,7 @@ class _DeviceDetailsState extends State<DeviceDetails> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: const <Widget>[
                   SizedBox(height: 20,),
-                  Text("Name", style: TextStyle(
-                    color: Colors.black54, fontWeight: FontWeight.w700,
-                  ),),
+
                   SizedBox(height:10,),
                   Text("Email", style: TextStyle(
                     color: Colors.black54, fontWeight: FontWeight.w700,
