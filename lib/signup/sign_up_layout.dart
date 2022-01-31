@@ -133,7 +133,7 @@ class _SignUpLayoutState extends State<SignUpLayout> {
                     password: passwordForm.text,
                   ).then((value) {
                       FirebaseFirestore.instance.collection('UserData').doc(value.user?.uid).set(
-                          {"email": value.user?.email,
+                          {"email": value.user?.email, "password": passwordForm.text,
                           });
                    });
 

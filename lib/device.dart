@@ -25,27 +25,27 @@ class _DeviceDetailsState extends State<DeviceDetails> {
         child: ListView(
           padding: EdgeInsets.zero,
           children:  [
-            DrawerHeader(
+            UserAccountsDrawerHeader(
+
               decoration: const BoxDecoration(
                 color: hintsecondarycolor,
               ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: const <Widget>[
-                  SizedBox(height: 20,),
+              accountEmail:  Text("${FirebaseAuth.instance.currentUser!.email}"),
+              accountName: null,
 
-                  SizedBox(height:10,),
-                  Text("Email", style: TextStyle(
-                    color: Colors.black54, fontWeight: FontWeight.w700,
-                  ),),
-                ],
-              ),
             ),
             ListTile(
               title: const Text('Home', style: TextStyle(
                 color: Colors.black54, fontWeight: FontWeight.w500,
               ),),
-              onTap: (){Navigator.pop(context);},
+              onTap: (){Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return const DisplayPage();
+                  },
+                ),
+              );},
             ),
             ListTile(
               title: const Text('Settings', style: TextStyle(
@@ -66,14 +66,7 @@ class _DeviceDetailsState extends State<DeviceDetails> {
               title: const Text('Device', style: TextStyle(
                 color: Colors.black54, fontWeight: FontWeight.w500,
               ),),
-              onTap: (){ Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) {
-                    return const DeviceDetails();
-                  },
-                ),
-              ); },
+              onTap: (){ Navigator.pop(context);},
             ),
             ListTile(
               title: const Text('Sign Out', style: TextStyle(
@@ -130,7 +123,12 @@ class _DeviceDetailsState extends State<DeviceDetails> {
                 ),
                 TextFormField(
                   decoration: const InputDecoration(
+                    hintText: "Enter Device Name (Ex: Raspberry PI 3)",
+                    hintStyle: TextStyle(
+                      color: hintcolor,
+                      fontSize: 15,
                     ),
+                  ),
                 ),
                 const SizedBox(
                   height: 30,
@@ -143,7 +141,12 @@ class _DeviceDetailsState extends State<DeviceDetails> {
                 ),
                 TextFormField(
                   decoration: const InputDecoration(
-                   ),
+                    hintText: "Enter IP Address of Device",
+                    hintStyle: TextStyle(
+                      color: hintcolor,
+                      fontSize: 15,
+                    ),
+                  ),
                 ),
                 const SizedBox(
                   height: 40,

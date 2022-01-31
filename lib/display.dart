@@ -15,6 +15,8 @@ class DisplayPage extends StatefulWidget{
 }
 
 class _DisplayPageState extends State<DisplayPage> {
+
+
   @override
   Widget build(BuildContext context) {
 
@@ -28,21 +30,14 @@ class _DisplayPageState extends State<DisplayPage> {
           child: ListView(
           padding: EdgeInsets.zero,
             children:  [
-              DrawerHeader(
+               UserAccountsDrawerHeader(
+
                 decoration: const BoxDecoration(
                   color: hintsecondarycolor,
                 ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const <Widget>[
-                    SizedBox(height: 20,),
+                 accountEmail:  Text("${FirebaseAuth.instance.currentUser!.email}"),
+                accountName: null,
 
-                    SizedBox(height:10,),
-                    Text("Email", style: TextStyle(
-                      color: Colors.black54, fontWeight: FontWeight.w700,
-                    ),),
-                  ],
-                ),
               ),
               ListTile(
                 title: const Text('Home', style: TextStyle(
