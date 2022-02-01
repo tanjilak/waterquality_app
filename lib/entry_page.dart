@@ -38,7 +38,10 @@ class _EntryPageState extends State<EntryPage> {
               ),
               accountEmail:  Text("${FirebaseAuth.instance.currentUser!.email}"),
               accountName: null,
-
+              currentAccountPicture: const CircleAvatar(
+                child: Text("T"),
+                backgroundColor: Colors.white,
+              ),
             ),
             ListTile(
               title: const Text('Home', style: TextStyle(

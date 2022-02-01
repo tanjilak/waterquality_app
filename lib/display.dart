@@ -37,7 +37,10 @@ class _DisplayPageState extends State<DisplayPage> {
                 ),
                  accountEmail:  Text("${FirebaseAuth.instance.currentUser!.email}"),
                 accountName: null,
-
+                 currentAccountPicture: const CircleAvatar(
+                   child: Text("T"),
+                   backgroundColor: Colors.white,
+                 ),
               ),
               ListTile(
                 title: const Text('Home', style: TextStyle(

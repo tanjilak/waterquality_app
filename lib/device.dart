@@ -32,7 +32,10 @@ class _DeviceDetailsState extends State<DeviceDetails> {
               ),
               accountEmail:  Text("${FirebaseAuth.instance.currentUser!.email}"),
               accountName: null,
-
+              currentAccountPicture: const CircleAvatar(
+                child: Text("T"),
+                backgroundColor: Colors.white,
+              ),
             ),
             ListTile(
               title: const Text('Home', style: TextStyle(
