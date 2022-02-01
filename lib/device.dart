@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:waterquality_app/constants.dart';
@@ -13,6 +14,9 @@ class DeviceDetails extends StatefulWidget{
 }
 
 class _DeviceDetailsState extends State<DeviceDetails> {
+  final TextEditingController deviceForm = TextEditingController();
+  final TextEditingController iPForm = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -125,6 +129,10 @@ class _DeviceDetailsState extends State<DeviceDetails> {
                   ),
                 ),
                 TextFormField(
+                  controller: deviceForm,
+                    onSaved: (value){
+                    deviceForm.text = value!;
+                    },
                   decoration: const InputDecoration(
                     hintText: "Enter Device Name (Ex: Raspberry PI 3)",
                     hintStyle: TextStyle(
@@ -137,12 +145,17 @@ class _DeviceDetailsState extends State<DeviceDetails> {
                   height: 30,
                 ),
                 const Text(
+
                   "IP Address",
                   style: TextStyle(
                     color: Colors.black54, fontWeight: FontWeight.w500,
                   ),
                 ),
                 TextFormField(
+                  controller: iPForm,
+                  onSaved: (value){
+                  iPForm.text = value!;
+                  },
                   decoration: const InputDecoration(
                     hintText: "Enter IP Address of Device",
                     hintStyle: TextStyle(
@@ -162,7 +175,13 @@ class _DeviceDetailsState extends State<DeviceDetails> {
                       color: primarycolor,
                     ),
                   ),
-                  onPressed: () { Navigator.push(
+                  onPressed: () {
+                    Map<String, dynamic> data = {"Device Name": deviceForm.text,
+                    "IP Address": iPForm.text,};
+
+                    FirebaseFirestore.instance.collection('UserData').add(data);
+
+                    Navigator.push(
                     context,
                     MaterialPageRoute(
                       builder: (context) {
