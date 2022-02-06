@@ -144,7 +144,7 @@ class _EntryPageState extends State<EntryPage> {
                 ),
                 ),
                 TextFormField(
-                  initialValue: "*******",
+
                   obscureText: true,
                   obscuringCharacter: "*",
                   decoration: const InputDecoration(

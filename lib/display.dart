@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:waterquality_app/constants.dart';
 import 'package:waterquality_app/entry_page.dart';
 import 'package:waterquality_app/home/home_screen.dart';
-
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 import 'device.dart';
+import 'package:intl/intl.dart';
 
 
 class DisplayPage extends StatefulWidget{
@@ -15,6 +17,23 @@ class DisplayPage extends StatefulWidget{
 }
 
 class _DisplayPageState extends State<DisplayPage> {
+
+
+
+
+  Future<List> getMethod() async{
+    var theUrl = "https://modernized-grains.000webhostapp.com/getData.php";
+  http.Response response = await http.get(Uri.parse(theUrl));
+
+  //  var res = await http.get(Uri.parse(theUrl),headers: {"Accept:":"application/json"});
+  var data = json.decode(response.body);
+
+  return data;
+  }
+
+
+
+
 
 
   @override
@@ -98,8 +117,8 @@ class _DisplayPageState extends State<DisplayPage> {
         ),
         body:
 
-        DefaultTabController(
-          length: 5,
+       DefaultTabController(
+          length: 4,
           child: Column(
             children:<Widget>[
               const SizedBox(
@@ -108,45 +127,40 @@ class _DisplayPageState extends State<DisplayPage> {
               Container(
               constraints: const BoxConstraints.expand(height: 50),
                 child: TabBar(
-                  isScrollable: true,
+
                   labelColor: primarycolor,
                   unselectedLabelColor: hintsecondarycolor,
                   tabs: [
                     Tab(
                       child: Container(
                         alignment: Alignment.center,
-                        child: const Text("pH",
+                        child: const Text("Day",
                         ),
                       ),
                    ),
 
                     Tab( child: Container(
                       alignment: Alignment.center,
-                      child: const Text("Chlorine",
+                      child: const Text("Week",
                          ),
                     ),
                     ),
 
                     Tab( child: Container(
                       alignment: Alignment.center,
-                      child: const Text("Conductivity",
+                      child: const Text("Month",
                           ),
                     ),
                     ),
 
                     Tab( child: Container(
                       alignment: Alignment.center,
-                      child: const Text("Temperature",
+                      child: const Text("Year",
                         ),
                     ),
                     ),
 
-                    Tab( child: Container(
-                      alignment: Alignment.center,
-                      child: const Text("Flow Rate",
-                         ),
-                    ),
-                    ),
+
                   ] //tab
                 ),
               ),
@@ -163,16 +177,40 @@ class _DisplayPageState extends State<DisplayPage> {
                   children:[
                     Column(
                      children: <Widget>[
+                      Text(
+                          "Today: ${DateFormat('yyyy-MM-dd').format(DateTime.now())}",
+                        style: const TextStyle(
+                          color: primarycolor,
+                          fontWeight: FontWeight.w500,
+                          fontSize: 25,
+                        ),
+                      ),
+                      const SizedBox(height:10,),
+                       const Text(
+                         "insert graphs of todays data"
+                       ),
+                       const SizedBox(height: 20,),
+                       const Text(
+                         "Past Water Quality Data",
+                         style: TextStyle(
+
+                           fontWeight: FontWeight.w500,
+                           fontSize: 18,
+                         ),
+                       ),
+
+                       const SizedBox(height: 13),
+
                        Container(
                          alignment: Alignment.center,
-                         height: 200,
+                         height: 350,
                         width: 280,
                          decoration: BoxDecoration(
-                             border: Border.all(
-                                 color: const Color(0x9900738C),
+                           border: Border.all(
+                             color: const Color(0x9900738C),
 
-                             ),
-                           borderRadius: BorderRadius.circular(50.0),
+                           ),
+
                            boxShadow: const [
                              BoxShadow(
                                  color: Color(0x40000000),
@@ -181,42 +219,91 @@ class _DisplayPageState extends State<DisplayPage> {
                                  offset: Offset(0, 4)
                              ),
                            ],
-                             color: Colors.white,
+                             color: hintsecondarycolor,
 
                          ),
 
-                         child: const Text("ph"),
+
+                         child: FutureBuilder<List>(
+                           future: getMethod(),
+                             builder: (context, snapshot) {
+                               if (snapshot.connectionState == ConnectionState.done) {
+                                 if (snapshot.hasData) {
+                                   // Success case
+                                   return ListView.builder(
+                                     itemBuilder: (context, index) {
+                                       return Card(
+                                        child: ListTile(
+                                         title:
+                                          Container(
+                                            padding: const EdgeInsets.fromLTRB(0, 5, 0, 0),
+                                              child: Text("Time: ${snapshot.data![index]['time']}",
+                                              style: const TextStyle(
+                                                  fontWeight: FontWeight.w500,
+                                                 color: secondarycolor,
+                                              ),),),
+
+                                         subtitle:
+                                         Column(
+                                           mainAxisAlignment: MainAxisAlignment.start,
+                                           crossAxisAlignment: CrossAxisAlignment.start,
+                                             children: <Widget>[
+                                               Text("Temperature: ${snapshot.data![index]['temp_value']} °C",
+                                                 style: const TextStyle(
+                                                   color: Colors.black,
+                                                 ),),
+                                               Text("pH Value: ${snapshot.data![index]['ph_value']}",
+                                                 style: const TextStyle(
+                                                   color: Colors.black,
+                                                 ),),
+                                               Text("ORP Value: ${snapshot.data![index]['orp_value']}",
+                                                 style: const TextStyle(
+                                                   color: Colors.black,
+                                                 ),),
+                                             ],
+
+                                         ),
+
+                                       ),
+                                       );
+
+                                     },
+                                     itemCount: snapshot.data!.length,
+                                   );
+                                 }
+                                 // Error case
+                                 return const Text('Something went wrong');
+                               } else {
+
+                                 return const Center(
+                                   child: CircularProgressIndicator(),
+                                 );
+                               }
+                             }
+
+                         ),
+
                        ),
+
+
                        const SizedBox(height: 20,),
-                       OutlinedButton(
-                         onPressed: () {},
-                         child: const Text("Update",
-                           style: TextStyle(
-                             color: secondarycolor,
-                             fontWeight: FontWeight.bold,
-                             fontSize: 18,
-                           ),
-                         ),
-                       ),
+
                      ],
 
                     ),
                     Container(
                       margin: const EdgeInsets.all(15.0),
-                      child: const Text("chlorine"),
+                      child: const Text("data accumulated in one week + predictions for next week"),
                     ),
                     Container(
                       margin: const EdgeInsets.all(15.0),
-                      child: const Text("conductivity"),
+                      child: const Text("data collected in month or predictions for month"),
                     ),
                     Container(
                       margin: const EdgeInsets.all(15.0),
-                      child: const Text("temp"),
+                      child: const Text("data collected in year + predicitions for year after year is over"),
                     ),
-                    Container(
-                      margin: const EdgeInsets.all(15.0),
-                      child: const Text("flow"),
-                    ),
+
                   ]
                 ),
               ),

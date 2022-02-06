@@ -17,6 +17,10 @@ class _DeviceDetailsState extends State<DeviceDetails> {
   final TextEditingController deviceForm = TextEditingController();
   final TextEditingController iPForm = TextEditingController();
 
+  final GlobalKey<FormState> _key = GlobalKey<FormState>();
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -96,7 +100,8 @@ class _DeviceDetailsState extends State<DeviceDetails> {
         ),
       ),
         body:
-        SingleChildScrollView(
+        Form(
+          key: _key,
         child: Padding(
           padding: const EdgeInsets.all(20),
           child: Column(
@@ -129,11 +134,13 @@ class _DeviceDetailsState extends State<DeviceDetails> {
                   ),
                 ),
                 TextFormField(
+
                   controller: deviceForm,
                     onSaved: (value){
                     deviceForm.text = value!;
                     },
                   decoration: const InputDecoration(
+
                     hintText: "Enter Device Name (Ex: Raspberry PI 3)",
                     hintStyle: TextStyle(
                       color: hintcolor,
@@ -152,6 +159,7 @@ class _DeviceDetailsState extends State<DeviceDetails> {
                   ),
                 ),
                 TextFormField(
+
                   controller: iPForm,
                   onSaved: (value){
                   iPForm.text = value!;
@@ -165,34 +173,76 @@ class _DeviceDetailsState extends State<DeviceDetails> {
                   ),
                 ),
                 const SizedBox(
-                  height: 40,
+                  height: 30,
                 ),
 
                 OutlinedButton(
                   child: const Text(
-                    "Save All and Continue",
+                    "Add Device",
                     style: TextStyle(
                       color: primarycolor,
                     ),
                   ),
                   onPressed: () {
-                    Map<String, dynamic> data = {"Device Name": deviceForm.text,
-                    "IP Address": iPForm.text,};
+                    Map<String, dynamic> data = {"device": {
+                      "device_name": deviceForm.text,
+                      "ip_address": iPForm.text,},};
 
-                    FirebaseFirestore.instance.collection('UserData').add(data);
+                    FirebaseFirestore.instance.collection('UserData').doc(FirebaseAuth.instance.currentUser?.uid).update(data);
 
-                    Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) {
-                        return const DisplayPage();
-                      },
-                    ),
-                  ); },
+                    showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                              return AlertDialog(
+                                title: const Text('Connected Device'),
+                                  content: SingleChildScrollView(
+                                  child: ListBody(
+                                       children: <Widget>[
+                                         Card(
+                                           elevation: 5,
+                                           child: ListTile(
+                                             title: Text(deviceForm.text),
+                                             subtitle: Text(iPForm.text),
+                                             trailing:  OutlinedButton(
+                                               onPressed: () {   Navigator.push(
+                                                 context,
+                                                 MaterialPageRoute(
+                                                   builder: (context) {
+                                                     return const DisplayPage();
+                                                   },
+                                                 ),
+                                               ); },
+                                               child: const Text('Data', style: TextStyle(
+                                                 color: primarycolor,
+                                               ),),
+                                               style: OutlinedButton.styleFrom(
+                                                 padding: const EdgeInsets.all(20),
+                                               ),
+                                             ),
+                                           ),
+
+                                         ),
+                                       ],
+                                  ),
+                                  ),
+                              );
+                              },
+                    );
+
+
+
+
+
+                   },
                   style: OutlinedButton.styleFrom(
                     padding: const EdgeInsets.all(20),
                   ),
+
+
+
                 ),
+                const SizedBox( height: 20,),
+
               ],
           ),
         ),
