@@ -4,10 +4,13 @@ import 'package:waterquality_app/constants.dart';
 import 'package:waterquality_app/entry_page.dart';
 import 'package:waterquality_app/home/home_screen.dart';
 import 'package:http/http.dart' as http;
+import 'package:waterquality_app/ph_test.dart';
+import 'package:waterquality_app/prediction.dart';
 import 'dart:convert';
 
+
 import 'device.dart';
-import 'package:intl/intl.dart';
+
 
 
 class DisplayPage extends StatefulWidget{
@@ -19,10 +22,8 @@ class DisplayPage extends StatefulWidget{
 class _DisplayPageState extends State<DisplayPage> {
 
 
-
-
   Future<List> getMethod() async{
-    var theUrl = "https://modernized-grains.000webhostapp.com/getData.php";
+    var theUrl = "https://modernized-grains.000webhostapp.com/MorningData.php";
   http.Response response = await http.get(Uri.parse(theUrl));
 
   //  var res = await http.get(Uri.parse(theUrl),headers: {"Accept:":"application/json"});
@@ -30,11 +31,24 @@ class _DisplayPageState extends State<DisplayPage> {
 
   return data;
   }
+  Future<List> getMethod2() async{
+    var theUrl = "https://modernized-grains.000webhostapp.com/AfternoonData.php";
+    http.Response response = await http.get(Uri.parse(theUrl));
 
+    //  var res = await http.get(Uri.parse(theUrl),headers: {"Accept:":"application/json"});
+    var data = json.decode(response.body);
 
+    return data;
+  }
+  Future<List> getMethod3() async{
+    var theUrl = "https://modernized-grains.000webhostapp.com/NightData.php";
+    http.Response response = await http.get(Uri.parse(theUrl));
 
+    //  var res = await http.get(Uri.parse(theUrl),headers: {"Accept:":"application/json"});
+    var data = json.decode(response.body);
 
-
+    return data;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -62,10 +76,23 @@ class _DisplayPageState extends State<DisplayPage> {
                  ),
               ),
               ListTile(
-                title: const Text('Home', style: TextStyle(
+                title: const Text('Data', style: TextStyle(
                   color: Colors.black54, fontWeight: FontWeight.w500,
                 ),),
                 onTap: (){Navigator.pop(context);},
+              ),
+              ListTile(
+                title: const Text('Graphs', style: TextStyle(
+                  color: Colors.black54, fontWeight: FontWeight.w500,
+                ),),
+                onTap: (){Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return const Prediction();
+                    },
+                  ),
+                );},
               ),
               ListTile(
                 title: const Text('Settings', style: TextStyle(
@@ -173,25 +200,22 @@ class _DisplayPageState extends State<DisplayPage> {
             ),
 
               Expanded(
+
                 child: TabBarView(
                   children:[
                     Column(
                      children: <Widget>[
-                      Text(
-                          "Today: ${DateFormat('yyyy-MM-dd').format(DateTime.now())}",
-                        style: const TextStyle(
+                      const Text(
+                          "Monday, 2/21/22",
+                        style: TextStyle(
                           color: primarycolor,
                           fontWeight: FontWeight.w500,
                           fontSize: 25,
                         ),
                       ),
-                      const SizedBox(height:10,),
+                      const SizedBox(height:15,),
                        const Text(
-                         "insert graphs of todays data"
-                       ),
-                       const SizedBox(height: 20,),
-                       const Text(
-                         "Past Water Quality Data",
+                         "Morning",
                          style: TextStyle(
 
                            fontWeight: FontWeight.w500,
@@ -203,8 +227,8 @@ class _DisplayPageState extends State<DisplayPage> {
 
                        Container(
                          alignment: Alignment.center,
-                         height: 350,
-                        width: 280,
+                         height: 150,
+                         width: 290,
                          decoration: BoxDecoration(
                            border: Border.all(
                              color: const Color(0x9900738C),
@@ -229,50 +253,60 @@ class _DisplayPageState extends State<DisplayPage> {
                              builder: (context, snapshot) {
                                if (snapshot.connectionState == ConnectionState.done) {
                                  if (snapshot.hasData) {
-                                   // Success case
-                                   return ListView.builder(
-                                     itemBuilder: (context, index) {
-                                       return Card(
-                                        child: ListTile(
-                                         title:
-                                          Container(
-                                            padding: const EdgeInsets.fromLTRB(0, 5, 0, 0),
-                                              child: Text("Time: ${snapshot.data![index]['time']}",
-                                              style: const TextStyle(
-                                                  fontWeight: FontWeight.w500,
-                                                 color: secondarycolor,
-                                              ),),),
 
-                                         subtitle:
-                                         Column(
-                                           mainAxisAlignment: MainAxisAlignment.start,
-                                           crossAxisAlignment: CrossAxisAlignment.start,
-                                             children: <Widget>[
-                                               Text("Temperature: ${snapshot.data![index]['temp_value']} °C",
+                                     // Success case
+                                     return ListView.builder(
+                                       itemBuilder: (context, index) {
+                                         return Card(
+                                           elevation: 5,
+                                           child: ListTile(
+                                             title:
+                                             Container(
+                                               padding: const EdgeInsets
+                                                   .fromLTRB(0, 5, 0, 0),
+                                               child: Text("Time: ${snapshot
+                                                   .data![index]['time']} AM",
                                                  style: const TextStyle(
-                                                   color: Colors.black,
-                                                 ),),
-                                               Text("pH Value: ${snapshot.data![index]['ph_value']}",
-                                                 style: const TextStyle(
-                                                   color: Colors.black,
-                                                 ),),
-                                               Text("ORP Value: ${snapshot.data![index]['orp_value']}",
-                                                 style: const TextStyle(
-                                                   color: Colors.black,
-                                                 ),),
-                                             ],
+                                                   fontWeight: FontWeight.w500,
+                                                   color: secondarycolor,
+                                                 ),),),
 
-                                         ),
+                                             subtitle:
+                                             Column(
+                                               mainAxisAlignment: MainAxisAlignment
+                                                   .start,
+                                               crossAxisAlignment: CrossAxisAlignment
+                                                   .start,
+                                               children: <Widget>[
 
-                                       ),
-                                       );
+                                                 Text("Temperature: ${snapshot
+                                                     .data![index]['temp']} °C",
+                                                   style: const TextStyle(
+                                                     color: Colors.black,
+                                                   ),),
+                                                 Text("pH Value: ${snapshot
+                                                     .data![index]['ph']}",
+                                                   style: const TextStyle(
+                                                     color: Colors.black,
+                                                   ),),
+                                                 Text("ORP Value: ${snapshot
+                                                     .data![index]['orp']}",
+                                                   style: const TextStyle(
+                                                     color: Colors.black,
+                                                   ),),
+                                               ],
 
-                                     },
-                                     itemCount: snapshot.data!.length,
-                                   );
+                                             ),
+
+                                           ),
+                                         );
+                                       },
+                                       itemCount: snapshot.data!.length,
+                                     );
+
                                  }
                                  // Error case
-                                 return const Text('Something went wrong');
+                                 return const Text('Not Available Yet');
                                } else {
 
                                  return const Center(
@@ -287,21 +321,251 @@ class _DisplayPageState extends State<DisplayPage> {
 
 
                        const SizedBox(height: 20,),
+                       const Text(
+                         "Afternoon",
+                         style: TextStyle(
 
+                           fontWeight: FontWeight.w500,
+                           fontSize: 18,
+                         ),
+                       ),
+
+                       const SizedBox(height: 13),
+                       Container(
+                         alignment: Alignment.center,
+                         height: 150,
+                         width: 290,
+                         decoration: BoxDecoration(
+                           border: Border.all(
+                             color: const Color(0x9900738C),
+
+                           ),
+
+                           boxShadow: const [
+                             BoxShadow(
+                                 color: Color(0x40000000),
+                                 blurRadius: 4,
+                                 spreadRadius: 0,
+                                 offset: Offset(0, 4)
+                             ),
+                           ],
+                           color: hintsecondarycolor,
+
+                         ),
+
+
+                         child: FutureBuilder<List>(
+                             future: getMethod2(),
+                             builder: (context, snapshot) {
+                               if (snapshot.connectionState == ConnectionState.done) {
+                                 if (snapshot.hasData) {
+
+                                   // Success case
+                                   return ListView.builder(
+                                     itemBuilder: (context, index) {
+                                       return Card(
+                                         elevation: 5,
+                                         child: ListTile(
+                                           title:
+                                           Container(
+                                             padding: const EdgeInsets
+                                                 .fromLTRB(0, 5, 0, 0),
+                                             child: Text("Time: ${snapshot
+                                                 .data![index]['time']} PM",
+                                               style: const TextStyle(
+                                                 fontWeight: FontWeight.w500,
+                                                 color: secondarycolor,
+                                               ),),),
+
+                                           subtitle:
+                                           Column(
+                                             mainAxisAlignment: MainAxisAlignment
+                                                 .start,
+                                             crossAxisAlignment: CrossAxisAlignment
+                                                 .start,
+                                             children: <Widget>[
+
+                                               Text("Temperature: ${snapshot
+                                                   .data![index]['temp']} °C",
+                                                 style: const TextStyle(
+                                                   color: Colors.black,
+                                                 ),),
+                                               Text("pH Value: ${snapshot
+                                                   .data![index]['ph']}",
+                                                 style: const TextStyle(
+                                                   color: Colors.black,
+                                                 ),),
+                                               Text("ORP Value: ${snapshot
+                                                   .data![index]['orp']}",
+                                                 style: const TextStyle(
+                                                   color: Colors.black,
+                                                 ),),
+                                             ],
+
+                                           ),
+
+                                         ),
+                                       );
+                                     },
+                                     itemCount: snapshot.data!.length,
+                                   );
+
+                                 }
+                                 // Error case
+                                 return const Text('Not Available Yet');
+                               } else {
+
+                                 return const Center(
+                                   child: CircularProgressIndicator(),
+                                 );
+                               }
+                             }
+
+                         ),
+
+                       ),
+
+
+                       const SizedBox(height: 20,),
+                       const Text(
+                         "Evening",
+                         style: TextStyle(
+
+                           fontWeight: FontWeight.w500,
+                           fontSize: 18,
+                         ),
+                       ),
+
+                       const SizedBox(height: 13),
+                       Container(
+                         alignment: Alignment.center,
+                         height: 150,
+                         width: 290,
+                         decoration: BoxDecoration(
+                           border: Border.all(
+                             color: const Color(0x9900738C),
+
+                           ),
+
+                           boxShadow: const [
+                             BoxShadow(
+                                 color: Color(0x40000000),
+                                 blurRadius: 4,
+                                 spreadRadius: 0,
+                                 offset: Offset(0, 4)
+                             ),
+                           ],
+                           color: hintsecondarycolor,
+
+                         ),
+
+
+                         child: FutureBuilder<List>(
+                             future: getMethod3(),
+                             builder: (context, snapshot) {
+                               if (snapshot.connectionState == ConnectionState.done) {
+                                 if (snapshot.hasData) {
+
+                                   // Success case
+                                   return ListView.builder(
+                                     itemBuilder: (context, index) {
+                                       return Card(
+                                         elevation: 5,
+                                         child: ListTile(
+                                           title:
+                                           Container(
+                                             padding: const EdgeInsets
+                                                 .fromLTRB(0, 5, 0, 0),
+                                             child: Text("Time: ${snapshot
+                                                 .data![index]['time']} PM",
+                                               style: const TextStyle(
+                                                 fontWeight: FontWeight.w500,
+                                                 color: secondarycolor,
+                                               ),),),
+
+                                           subtitle:
+                                           Column(
+                                             mainAxisAlignment: MainAxisAlignment
+                                                 .start,
+                                             crossAxisAlignment: CrossAxisAlignment
+                                                 .start,
+                                             children: <Widget>[
+
+                                               Text("Temperature: ${snapshot
+                                                   .data![index]['temp']} °C",
+                                                 style: const TextStyle(
+                                                   color: Colors.black,
+                                                 ),),
+                                               Text("pH Value: ${snapshot
+                                                   .data![index]['ph']}",
+                                                 style: const TextStyle(
+                                                   color: Colors.black,
+                                                 ),),
+                                               Text("ORP Value: ${snapshot
+                                                   .data![index]['orp']}",
+                                                 style: const TextStyle(
+                                                   color: Colors.black,
+                                                 ),),
+                                             ],
+
+                                           ),
+
+                                         ),
+                                       );
+                                     },
+                                     itemCount: snapshot.data!.length,
+                                   );
+
+                                 }
+                                 // Error case
+                                 return const Text('Not Available Yet');
+                               } else {
+
+                                 return const Center(
+                                   child: CircularProgressIndicator(),
+                                 );
+                               }
+                             }
+
+                         ),
+
+                       ),
                      ],
 
                     ),
-                    Container(
-                      margin: const EdgeInsets.all(15.0),
-                      child: const Text("data accumulated in one week + predictions for next week"),
+
+
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                        children: <Widget>[
+                          const Text("pH"),
+                          const SizedBox(height:10,),
+                          Container(
+                            height: 150,
+                            width: 340,
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                color: const Color(0x9900738C),
+                              ),
+                            ),
+
+
+                            child: const phTable(),
+                          ),
+
+                          const Prediction(),
+
+                            ],
                     ),
+
+
                     Container(
                       margin: const EdgeInsets.all(15.0),
                       child: const Text("data collected in month or predictions for month"),
                     ),
                     Container(
                       margin: const EdgeInsets.all(15.0),
-                      child: const Text("data collected in year + predicitions for year after year is over"),
+                      child: const Text("data collected in whole year "),
                     ),
 
                   ]
