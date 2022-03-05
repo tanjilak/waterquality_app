@@ -534,29 +534,41 @@ class _DisplayPageState extends State<DisplayPage> {
 
                     ),
 
-
+                  SingleChildScrollView(
+                    child:
                     Column(
                       mainAxisAlignment: MainAxisAlignment.start,
-                        children: <Widget>[
-                          const Text("pH"),
-                          const SizedBox(height:10,),
-                          Container(
-                            height: 150,
-                            width: 340,
-                            decoration: BoxDecoration(
-                              border: Border.all(
-                                color: const Color(0x9900738C),
-                              ),
+                      children: <Widget>[
+                        const Text("Week 1",  style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 25,
+                          color: primarycolor,
+                        ),),
+                        const SizedBox(height:10,),
+                        const Text("pH",
+                          style: TextStyle(
+                          fontWeight: FontWeight.bold,),
+                        ),
+                        const SizedBox(height:10,),
+                        Container(
+                          height: 150,
+                          width: 340,
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: const Color(0x9900738C),
                             ),
-
-
-                            child: const phTable(),
                           ),
 
-                          const Prediction(),
 
-                            ],
+                          child: const phTable(),
+                        ),
+
+                        const Prediction(),
+
+                      ],
                     ),
+                  ),
+
 
 
                     Container(

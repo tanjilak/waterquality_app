@@ -48,7 +48,7 @@ class _phTableState extends State<phTable> {
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
                       row.toString(),
-                      style: const TextStyle(fontSize: 15.0),
+                      style: const TextStyle(fontSize: 11.5),
                     ),
                   );
                 }).toList());
