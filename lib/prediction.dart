@@ -15,12 +15,14 @@ class Prediction extends StatefulWidget {
 class _PredictionState extends State<Prediction> {
   var prediction = "";
   var prediction2 = "";
+  var prediction3 ="";
 
   @override
   void initState() {
     super.initState();
     prediction = "click predict button";
     prediction2 ="click predict button";
+    prediction3 ="click predict button";
   }
 
   Future<void> Data() async {
@@ -38,10 +40,17 @@ class _PredictionState extends State<Prediction> {
     interpreter2.run(input2,output2);
     print(output2[0][0]);
 
+  final interpreter3 = await Interpreter.fromAsset('model_3.tflite');
+  var input3 = [8.06, 6.8, 6.82, 7.84, 6.48];
+  var output3 = List.filled(1,0).reshape([1,1]);
+  interpreter3.run(input3,output3);
+  interpreter3.run(input3,output3);
+  print(output3[0][0]);
 
     this.setState(() {
       prediction = output[0][0].toString();
       prediction2 = output2[0][0].toString();
+      prediction3 = output3[0][0].toString();
     });
   }
 
@@ -69,6 +78,10 @@ class _PredictionState extends State<Prediction> {
             Text(
               "Monday Afternoon: $prediction2 ",
                 style: const TextStyle(color: Colors.black, fontSize: 15),
+            ),
+            Text(
+              "Monday Night: $prediction3 ",
+              style: const TextStyle(color: Colors.black, fontSize: 15),
             ),
           ],
         ),

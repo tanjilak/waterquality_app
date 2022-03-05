@@ -193,7 +193,7 @@ class _DisplayPageState extends State<DisplayPage> {
               ),
 
             Container(
-              height: 30,
+              height: 20,
               decoration: const BoxDecoration(
                   border: Border(top: BorderSide(color: Colors.grey, width: 0.5))
               ),
@@ -213,7 +213,13 @@ class _DisplayPageState extends State<DisplayPage> {
                           fontSize: 25,
                         ),
                       ),
-                      const SizedBox(height:15,),
+                       const SizedBox(height:10,),
+                       Container(
+                         height: 5,
+                         decoration: const BoxDecoration(
+                             border: Border(top: BorderSide(color: Colors.grey, width: 0.2))
+                         ),
+                       ),
                        const Text(
                          "Morning",
                          style: TextStyle(
@@ -544,10 +550,17 @@ class _DisplayPageState extends State<DisplayPage> {
                           fontSize: 25,
                           color: primarycolor,
                         ),),
-                        const SizedBox(height:10,),
+                        const SizedBox(height:5,),
+                        Container(
+                          height: 5,
+                          decoration: const BoxDecoration(
+                              border: Border(top: BorderSide(color: Colors.grey, width: 0.2))
+                          ),
+                        ),
                         const Text("pH",
                           style: TextStyle(
-                          fontWeight: FontWeight.bold,),
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,),
                         ),
                         const SizedBox(height:10,),
                         Container(
@@ -564,7 +577,20 @@ class _DisplayPageState extends State<DisplayPage> {
                         ),
 
                         const Prediction(),
+                        const SizedBox(height:10,),
+                        Container(
+                          height: 10,
+                          decoration: const BoxDecoration(
+                              border: Border(top: BorderSide(color: Colors.grey, width: 0.5))
+                          ),
+                        ),
+                        const Text("Temperature",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
 
+                          ),
+                        ),
                       ],
                     ),
                   ),
