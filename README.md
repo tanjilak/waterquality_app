@@ -52,22 +52,23 @@ The water quality data is formatted as shown below: <br/>
 
 ### What I Learned
 
-I gained a wide understanding of Flutter and Dart syntax. 
+I gained a wide understanding of Flutter and Dart syntax. <br/>
 
-Connecting to a database was very confusing for me, at least from the beginning. 
+Connecting to a database was very confusing for me, at least from the beginning. <br/>
 
-I was able to understand SQL commands to connect to php files and even insert new data into tables.
-For example,
+I was able to understand SQL commands to connect to php files and even insert new data into tables. <br/>
+For example, <br/>
 
-SELECT ph_values FROM data
-   WHERE week_id=1
+SELECT ph_values FROM data <br/>
+   WHERE week_id=1 <br/>
    
-would only show ph column from the 'data' table when the week_id is only '1'. 
+would only show ph column from the 'data' table when the week_id is only '1'.  
 
 
 ### Continued Development
 
-For future projects, I would love to get a better understanding of SQL and actually analyzing more of the data. Incorporating SQL techniques for the database would improve the application. 
+For future projects, I would love to get a better understanding of SQL and actually analyzing more of the data. Incorporating SQL techniques for the database would improve the application. <br/>
+
 
 
 I would also try to use different application languages. Next time, I might use JAVA instead of Flutter for a better understanding of mobile applications. 
@@ -78,12 +79,12 @@ I would also try to use different application languages. Next time, I might use 
 
 ## Acknowledgments
 
-Due to this being my first application, I took inspiration and help from many tutorials online.
+Due to this being my first application, I took inspiration and help from many tutorials online. <br/>
 
-Sign in and Sign Up pages: 
-Firebase Authentication:
-Flutter Connection to PHP files & SQL Database:
-Flutter Connection to CSV files:
-Machine Learning Algorithm: 
+Sign in and Sign Up pages: <br/>
+Firebase Authentication:<br/>
+Flutter Connection to PHP files & SQL Database:<br/>
+Flutter Connection to CSV files:<br/>
+Machine Learning Algorithm: <br/>
 
 
