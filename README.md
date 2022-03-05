@@ -30,10 +30,10 @@ Users should be able to:
 ### Application Layout
 
 Users will see a welcome page after clicking the application. 
-(![screenshot](https://user-images.githubusercontent.com/70307218/156902364-e789d699-788d-45c8-81e8-3aec4c7573d9.jpg))
+![screenshot](https://user-images.githubusercontent.com/70307218/156902364-e789d699-788d-45c8-81e8-3aec4c7573d9.jpg =100x20)
 
 The water quality data is formatted as shown below:
-![image](https://user-images.githubusercontent.com/70307218/156902395-1c90059e-c715-4cbe-93fa-0dbcdc6976c0.png)
+![image](https://user-images.githubusercontent.com/70307218/156902395-1c90059e-c715-4cbe-93fa-0dbcdc6976c0.png = 100x20)
 
 
 ### Links
