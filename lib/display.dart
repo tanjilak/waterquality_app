@@ -23,7 +23,7 @@ class _DisplayPageState extends State<DisplayPage> {
 
 
   Future<List> getMethod() async{
-    var theUrl = "https://modernized-grains.000webhostapp.com/MorningData.php";
+    var theUrl = "http://h2ocapstone2022.ddns.net:9999/MorningData.php";
   http.Response response = await http.get(Uri.parse(theUrl));
 
   //  var res = await http.get(Uri.parse(theUrl),headers: {"Accept:":"application/json"});
@@ -32,7 +32,7 @@ class _DisplayPageState extends State<DisplayPage> {
   return data;
   }
   Future<List> getMethod2() async{
-    var theUrl = "https://modernized-grains.000webhostapp.com/AfternoonData.php";
+    var theUrl = "http://h2ocapstone2022.ddns.net:9999/AfternoonData.php";
     http.Response response = await http.get(Uri.parse(theUrl));
 
     //  var res = await http.get(Uri.parse(theUrl),headers: {"Accept:":"application/json"});
@@ -41,7 +41,7 @@ class _DisplayPageState extends State<DisplayPage> {
     return data;
   }
   Future<List> getMethod3() async{
-    var theUrl = "https://modernized-grains.000webhostapp.com/NightData.php";
+    var theUrl = "http://h2ocapstone2022.ddns.net:9999/NightData.php";
     http.Response response = await http.get(Uri.parse(theUrl));
 
     //  var res = await http.get(Uri.parse(theUrl),headers: {"Accept:":"application/json"});
@@ -52,7 +52,7 @@ class _DisplayPageState extends State<DisplayPage> {
 
   @override
   Widget build(BuildContext context) {
-
+    final PageController controller = PageController();
     return Scaffold(
         resizeToAvoidBottomInset : false,
         appBar: AppBar(
@@ -203,6 +203,9 @@ class _DisplayPageState extends State<DisplayPage> {
 
                 child: TabBarView(
                   children:[
+                    PageView(
+                      controller: controller,
+                    children: <Widget>[
                     Column(
                      children: <Widget>[
                       const Text(
@@ -538,6 +541,20 @@ class _DisplayPageState extends State<DisplayPage> {
                        ),
                      ],
 
+                    ),
+                      Center(
+                        child: Text("Tuesday"),
+                      ),
+                      Center(
+                        child: Text("Wednesday"),
+                      ),
+                      Center(
+                        child: Text("Thursday"),
+                      ),
+                      Center(
+                        child: Text("Friday"),
+                      ),
+                      ],
                     ),
 
                   SingleChildScrollView(
