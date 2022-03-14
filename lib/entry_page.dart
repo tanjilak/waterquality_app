@@ -134,27 +134,7 @@ class _EntryPageState extends State<EntryPage> {
                     fontSize: 15,
                   ),),
               ),
-              const SizedBox(
-                height: 30,
-              ),
-                const Text(
-                  "Password",
-                      style: TextStyle(
-                  color: Colors.black54, fontWeight: FontWeight.w500,
-                ),
-                ),
-                TextFormField(
 
-                  obscureText: true,
-                  obscuringCharacter: "*",
-                  decoration: const InputDecoration(
-                    hintText: "Change Password",
-                    hintStyle: TextStyle(
-                      color: hintcolor,
-                      fontSize: 15,
-                    ),
-                  ),
-                ),
                 const SizedBox(
                   height: 50,
                 ),
@@ -180,30 +160,8 @@ class _EntryPageState extends State<EntryPage> {
 
                 ),
               ),
-                const SizedBox(
-                  height: 20,
-                ),
-              OutlinedButton(
-                child: const Text(
-                  "Save All",
-                  style: TextStyle(
-                    color: primarycolor,
-                  ),
-                ),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) {
-                        return const DisplayPage();
-                      },
-                    ),
-                  );
-                },
-                style: OutlinedButton.styleFrom(
-                  padding: const EdgeInsets.all(20),
-                ),
-              ),
+
+
               const SizedBox(
                 height: 20,
               ),

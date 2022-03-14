@@ -141,7 +141,7 @@ class _DeviceDetailsState extends State<DeviceDetails> {
                     },
                   decoration: const InputDecoration(
 
-                    hintText: "Enter Device Name (Ex: Raspberry PI 3)",
+                    hintText: "Enter Device Name (Ex: Arduino UNO)",
                     hintStyle: TextStyle(
                       color: hintcolor,
                       fontSize: 15,
