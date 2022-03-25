@@ -7,6 +7,10 @@ import 'package:waterquality_app/display.dart';
 import 'entry_page.dart';
 import 'home/home_screen.dart';
 
+
+//make it into a form
+//validation to see the data
+
 class DeviceDetails extends StatefulWidget{
   const DeviceDetails({Key? key, }): super(key: key);
   @override
@@ -153,7 +157,7 @@ class _DeviceDetailsState extends State<DeviceDetails> {
                 ),
                 const Text(
 
-                  "IP Address",
+                  "Serial Number",
                   style: TextStyle(
                     color: Colors.black54, fontWeight: FontWeight.w500,
                   ),
@@ -165,7 +169,7 @@ class _DeviceDetailsState extends State<DeviceDetails> {
                   iPForm.text = value!;
                   },
                   decoration: const InputDecoration(
-                    hintText: "Enter IP Address of Device",
+                    hintText: "Enter Serial Number of Device",
                     hintStyle: TextStyle(
                       color: hintcolor,
                       fontSize: 15,
@@ -178,7 +182,7 @@ class _DeviceDetailsState extends State<DeviceDetails> {
 
                 OutlinedButton(
                   child: const Text(
-                    "Add Device",
+                    "Connect to Device",
                     style: TextStyle(
                       color: primarycolor,
                     ),
@@ -188,7 +192,6 @@ class _DeviceDetailsState extends State<DeviceDetails> {
                       "device_name": deviceForm.text,
                       "ip_address": iPForm.text,},};
 
-                    FirebaseFirestore.instance.collection('UserData').doc(FirebaseAuth.instance.currentUser?.uid).update(data);
 
                     showDialog(
                               context: context,
@@ -199,7 +202,7 @@ class _DeviceDetailsState extends State<DeviceDetails> {
                                   child: ListBody(
                                        children: <Widget>[
                                          Card(
-                                           elevation: 5,
+                                           elevation: 1,
                                            child: ListTile(
                                              title: Text(deviceForm.text),
                                              subtitle: Text(iPForm.text),
