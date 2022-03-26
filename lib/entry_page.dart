@@ -43,19 +43,7 @@ class _EntryPageState extends State<EntryPage> {
                 backgroundColor: Colors.white,
               ),
             ),
-            ListTile(
-              title: const Text('Home', style: TextStyle(
-                color: Colors.black54, fontWeight: FontWeight.w500,
-              ),),
-              onTap: (){Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) {
-                    return const DisplayPage();
-                  },
-                ),
-              );},
-            ),
+
             ListTile(
               title: const Text('Settings', style: TextStyle(
                 color: Colors.black54, fontWeight: FontWeight.w500,

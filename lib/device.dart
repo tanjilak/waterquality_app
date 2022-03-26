@@ -1,12 +1,15 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'dart:convert';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import 'package:waterquality_app/constants.dart';
 import 'package:waterquality_app/display.dart';
 
 import 'entry_page.dart';
 import 'home/home_screen.dart';
 
+//https://flutter-examples.com/flutter-online-user-login-using-php-mysql-api/
 
 //make it into a form
 //validation to see the data
@@ -18,11 +21,68 @@ class DeviceDetails extends StatefulWidget{
 }
 
 class _DeviceDetailsState extends State<DeviceDetails> {
-  final TextEditingController deviceForm = TextEditingController();
-  final TextEditingController iPForm = TextEditingController();
+
+  bool visible = false;
+
+  final nameController = TextEditingController();
+  final serialnumberController = TextEditingController();
+
+  Future deviceAuthentication() async{
+    setState((){
+      visible = true;
+    });
+
+    String name = nameController.text;
+    String serial_number = serialnumberController.text;
+
+    var url = "https://modernized-grains.000webhostapp.com/device.php";
+    var data = {'name': name, 'serial_number': serial_number};
+    http.Response response = await http.post(Uri.parse(url), body: json.encode(data));
+
+    var message = jsonDecode(response.body);
+
+    if(message == 'Device Details Matched'){
+      setState(() {
+        visible = false;
+      });
+
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) {
+            return const DisplayPage();
+          },
+        ),
+      );
+    }else{
+      setState(() {
+        visible = false;
+      });
+
+
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text(message),
+            actions: <Widget>[
+              OutlinedButton(
+                child: const Text("Try Again"),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        },
+      );
+    }
+
+  }
+
+
 
   final GlobalKey<FormState> _key = GlobalKey<FormState>();
-
 
 
   @override
@@ -49,19 +109,7 @@ class _DeviceDetailsState extends State<DeviceDetails> {
                 backgroundColor: Colors.white,
               ),
             ),
-            ListTile(
-              title: const Text('Home', style: TextStyle(
-                color: Colors.black54, fontWeight: FontWeight.w500,
-              ),),
-              onTap: (){Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) {
-                    return const DisplayPage();
-                  },
-                ),
-              );},
-            ),
+
             ListTile(
               title: const Text('Settings', style: TextStyle(
                 color: Colors.black54, fontWeight: FontWeight.w500,
@@ -139,10 +187,8 @@ class _DeviceDetailsState extends State<DeviceDetails> {
                 ),
                 TextFormField(
 
-                  controller: deviceForm,
-                    onSaved: (value){
-                    deviceForm.text = value!;
-                    },
+                  controller: nameController,
+
                   decoration: const InputDecoration(
 
                     hintText: "Enter Device Name (Ex: Arduino UNO)",
@@ -164,10 +210,9 @@ class _DeviceDetailsState extends State<DeviceDetails> {
                 ),
                 TextFormField(
 
-                  controller: iPForm,
-                  onSaved: (value){
-                  iPForm.text = value!;
-                  },
+                controller: serialnumberController,
+
+
                   decoration: const InputDecoration(
                     hintText: "Enter Serial Number of Device",
                     hintStyle: TextStyle(
@@ -188,54 +233,7 @@ class _DeviceDetailsState extends State<DeviceDetails> {
                     ),
                   ),
                   onPressed: () {
-                    Map<String, dynamic> data = {"device": {
-                      "device_name": deviceForm.text,
-                      "ip_address": iPForm.text,},};
-
-
-                    showDialog(
-                              context: context,
-                              builder: (BuildContext context) {
-                              return AlertDialog(
-                                title: const Text('Connected Device'),
-                                  content: SingleChildScrollView(
-                                  child: ListBody(
-                                       children: <Widget>[
-                                         Card(
-                                           elevation: 1,
-                                           child: ListTile(
-                                             title: Text(deviceForm.text),
-                                             subtitle: Text(iPForm.text),
-                                             trailing:  OutlinedButton(
-                                               onPressed: () {   Navigator.push(
-                                                 context,
-                                                 MaterialPageRoute(
-                                                   builder: (context) {
-                                                     return const DisplayPage();
-                                                   },
-                                                 ),
-                                               ); },
-                                               child: const Text('Data', style: TextStyle(
-                                                 color: primarycolor,
-                                               ),),
-                                               style: OutlinedButton.styleFrom(
-                                                 padding: const EdgeInsets.all(20),
-                                               ),
-                                             ),
-                                           ),
-
-                                         ),
-                                       ],
-                                  ),
-                                  ),
-                              );
-                              },
-                    );
-
-
-
-
-
+                        deviceAuthentication();
                    },
                   style: OutlinedButton.styleFrom(
                     padding: const EdgeInsets.all(20),
@@ -252,4 +250,5 @@ class _DeviceDetailsState extends State<DeviceDetails> {
         ),
     );
   }
+
   }

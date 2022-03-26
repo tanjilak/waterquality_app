@@ -11,7 +11,8 @@ import 'dart:convert';
 
 import 'device.dart';
 
-//display page ONLY FOR ARDUINO UNO
+//display page ONLY FOR ARDUINO UNO //ROOM 302 IN RLC
+
 //more display pages for other devices //same format //just different php files
 
 class DisplayPage extends StatefulWidget{
@@ -22,6 +23,7 @@ class DisplayPage extends StatefulWidget{
 
 class _DisplayPageState extends State<DisplayPage> {
 
+  //different getmethods for each day
 //MONDAY
   Future<List> getMethod() async{
     var theUrl = "http://h2ocapstone2022.ddns.net:9999/MorningData.php";
@@ -135,6 +137,7 @@ class _DisplayPageState extends State<DisplayPage> {
               ),
               Container(
               constraints: const BoxConstraints.expand(height: 50),
+                //tab bar names
                 child: TabBar(
 
                   labelColor: primarycolor,
@@ -168,7 +171,6 @@ class _DisplayPageState extends State<DisplayPage> {
                   ] //tab
                 ),
               ),
-
             Container(
               height: 20,
               decoration: const BoxDecoration(
@@ -180,13 +182,17 @@ class _DisplayPageState extends State<DisplayPage> {
 
                 child: TabBarView(
                   children:[
+
+                    //day tab
                     PageView(
                       controller: controller,
                       scrollDirection: Axis.vertical,
                     children: <Widget>[
+
+                      //SHOW ONLY ONE WEEK (THE CURRENT WEEK)
+
                       //MONDAY
-                      //see if current monday could show
-                    Column(
+                      Column(
                      children: <Widget>[
                       const Text(
                           "Monday, 2/21/22",
@@ -216,7 +222,7 @@ class _DisplayPageState extends State<DisplayPage> {
 
                        Container(
                          alignment: Alignment.center,
-                         height: 150,
+                         height: 190,
                          width: 290,
                          decoration: BoxDecoration(
                            border: Border.all(
@@ -322,7 +328,7 @@ class _DisplayPageState extends State<DisplayPage> {
                        const SizedBox(height: 13),
                        Container(
                          alignment: Alignment.center,
-                         height: 150,
+                         height: 190,
                          width: 290,
                          decoration: BoxDecoration(
                            border: Border.all(
@@ -420,6 +426,7 @@ class _DisplayPageState extends State<DisplayPage> {
                      ],
 
                     ),
+
                       //TUESDAY
                       Column(
                         children: <Widget>[
@@ -451,7 +458,7 @@ class _DisplayPageState extends State<DisplayPage> {
 
                           Container(
                             alignment: Alignment.center,
-                            height: 150,
+                            height: 190,
                             width: 290,
                             decoration: BoxDecoration(
                               border: Border.all(
@@ -557,7 +564,7 @@ class _DisplayPageState extends State<DisplayPage> {
                           const SizedBox(height: 13),
                           Container(
                             alignment: Alignment.center,
-                            height: 150,
+                            height: 190,
                             width: 290,
                             decoration: BoxDecoration(
                               border: Border.all(
@@ -655,6 +662,7 @@ class _DisplayPageState extends State<DisplayPage> {
                         ],
 
                       ),
+
                       //WEDNESDAY
                       Column(
                         children: <Widget>[
@@ -686,7 +694,7 @@ class _DisplayPageState extends State<DisplayPage> {
 
                           Container(
                             alignment: Alignment.center,
-                            height: 150,
+                            height: 190,
                             width: 290,
                             decoration: BoxDecoration(
                               border: Border.all(
@@ -792,7 +800,7 @@ class _DisplayPageState extends State<DisplayPage> {
                           const SizedBox(height: 13),
                           Container(
                             alignment: Alignment.center,
-                            height: 150,
+                            height: 190,
                             width: 290,
                             decoration: BoxDecoration(
                               border: Border.all(
@@ -890,6 +898,7 @@ class _DisplayPageState extends State<DisplayPage> {
                         ],
 
                       ),
+
                       //THURSDAY
                       Column(
                         children: <Widget>[
@@ -921,7 +930,7 @@ class _DisplayPageState extends State<DisplayPage> {
 
                           Container(
                             alignment: Alignment.center,
-                            height: 150,
+                            height: 190,
                             width: 290,
                             decoration: BoxDecoration(
                               border: Border.all(
@@ -1027,7 +1036,7 @@ class _DisplayPageState extends State<DisplayPage> {
                           const SizedBox(height: 13),
                           Container(
                             alignment: Alignment.center,
-                            height: 150,
+                            height: 190,
                             width: 290,
                             decoration: BoxDecoration(
                               border: Border.all(
@@ -1125,6 +1134,7 @@ class _DisplayPageState extends State<DisplayPage> {
                         ],
 
                       ),
+
                       //FRIDAY
                       Column(
                         children: <Widget>[
@@ -1156,7 +1166,7 @@ class _DisplayPageState extends State<DisplayPage> {
 
                           Container(
                             alignment: Alignment.center,
-                            height: 150,
+                            height: 190,
                             width: 290,
                             decoration: BoxDecoration(
                               border: Border.all(
@@ -1262,7 +1272,7 @@ class _DisplayPageState extends State<DisplayPage> {
                           const SizedBox(height: 13),
                           Container(
                             alignment: Alignment.center,
-                            height: 150,
+                            height: 190,
                             width: 290,
                             decoration: BoxDecoration(
                               border: Border.all(
@@ -1374,6 +1384,8 @@ class _DisplayPageState extends State<DisplayPage> {
                           color: primarycolor,
                         ),),
                         const SizedBox(height:5,),
+
+                        //PH
                         Container(
                           height: 5,
                           decoration: const BoxDecoration(
@@ -1398,9 +1410,11 @@ class _DisplayPageState extends State<DisplayPage> {
 
                           child: const phTable(),
                         ),
-
                         const Prediction(),
                         const SizedBox(height:10,),
+
+
+                        //TEMPERATURE
                         Container(
                           height: 10,
                           decoration: const BoxDecoration(
@@ -1414,6 +1428,52 @@ class _DisplayPageState extends State<DisplayPage> {
 
                           ),
                         ),
+                        const SizedBox(height:10,),
+                        Container(
+                          height: 150,
+                          width: 340,
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: const Color(0x9900738C),
+                            ),
+                          ),
+
+
+                          child: const phTable(),
+                        ),
+                        const Prediction(),
+                        const SizedBox(height:10,),
+
+                        //ORP
+                        Container(
+                          height: 10,
+                          decoration: const BoxDecoration(
+                              border: Border(top: BorderSide(color: Colors.grey, width: 0.5))
+                          ),
+                        ),
+                        const Text("ORP",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
+
+                          ),
+                        ),
+                        const SizedBox(height:10,),
+                        Container(
+                          height: 150,
+                          width: 340,
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: const Color(0x9900738C),
+                            ),
+                          ),
+
+
+                          child: const phTable(),
+                        ),
+                        const Prediction(),
+                        const SizedBox(height:10,),
+
                       ],
                     ),
                   ),
