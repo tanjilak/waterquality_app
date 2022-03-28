@@ -35,7 +35,7 @@ class _DeviceDetailsState extends State<DeviceDetails> {
     String name = nameController.text;
     String serial_number = serialnumberController.text;
 
-    var url = "https://modernized-grains.000webhostapp.com/device.php";
+    var url = "http://h2ocapstone2022.ddns.net:9999/device1.php";
     var data = {'name': name, 'serial_number': serial_number};
     http.Response response = await http.post(Uri.parse(url), body: json.encode(data));
 
@@ -242,7 +242,14 @@ class _DeviceDetailsState extends State<DeviceDetails> {
 
 
                 ),
-                const SizedBox( height: 20,),
+                const SizedBox(height: 10),
+                Visibility(
+                    visible: visible,
+                    child: Container(
+                        margin: const EdgeInsets.only(bottom: 0),
+                        child: const CircularProgressIndicator()
+                    )
+                ),
 
               ],
           ),

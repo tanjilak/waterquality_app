@@ -44,6 +44,26 @@ class _DisplayPageState extends State<DisplayPage> {
     return data;
   }
 
+  //Tuesday
+  Future<List> getMethod3() async{
+    var theUrl = "http://h2ocapstone2022.ddns.net:9999/TuesdayMorningData.php";
+    http.Response response = await http.get(Uri.parse(theUrl));
+
+    //  var res = await http.get(Uri.parse(theUrl),headers: {"Accept:":"application/json"});
+    var data = json.decode(response.body);
+
+    return data;
+  }
+  Future<List> getMethod4() async{
+    var theUrl = "http://h2ocapstone2022.ddns.net:9999/TuesdayAfternoonData.php";
+    http.Response response = await http.get(Uri.parse(theUrl));
+
+    //  var res = await http.get(Uri.parse(theUrl),headers: {"Accept:":"application/json"});
+    var data = json.decode(response.body);
+
+    return data;
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -195,7 +215,7 @@ class _DisplayPageState extends State<DisplayPage> {
                       Column(
                      children: <Widget>[
                       const Text(
-                          "Monday, 2/21/22",
+                          "Monday, 3/28/22",
                         style: TextStyle(
                           color: primarycolor,
                           fontWeight: FontWeight.w500,
@@ -431,7 +451,7 @@ class _DisplayPageState extends State<DisplayPage> {
                       Column(
                         children: <Widget>[
                           const Text(
-                            "Tuesday, 2/22/22",
+                            "Tuesday, 3/29/22",
                             style: TextStyle(
                               color: primarycolor,
                               fontWeight: FontWeight.w500,
@@ -480,7 +500,7 @@ class _DisplayPageState extends State<DisplayPage> {
 
 
                             child: FutureBuilder<List>(
-                                future: getMethod(),
+                                future: getMethod3(),
                                 builder: (context, snapshot) {
                                   if (snapshot.connectionState == ConnectionState.done) {
                                     if (snapshot.hasData) {
@@ -586,7 +606,7 @@ class _DisplayPageState extends State<DisplayPage> {
 
 
                             child: FutureBuilder<List>(
-                                future: getMethod2(),
+                                future: getMethod4(),
                                 builder: (context, snapshot) {
                                   if (snapshot.connectionState == ConnectionState.done) {
                                     if (snapshot.hasData) {
@@ -667,7 +687,7 @@ class _DisplayPageState extends State<DisplayPage> {
                       Column(
                         children: <Widget>[
                           const Text(
-                            "Wednesday, 2/23/22",
+                            "Wednesday, 3/30/22",
                             style: TextStyle(
                               color: primarycolor,
                               fontWeight: FontWeight.w500,
@@ -903,7 +923,7 @@ class _DisplayPageState extends State<DisplayPage> {
                       Column(
                         children: <Widget>[
                           const Text(
-                            "Thursday, 2/24/22",
+                            "Thursday, 3/31/22",
                             style: TextStyle(
                               color: primarycolor,
                               fontWeight: FontWeight.w500,
@@ -1139,7 +1159,7 @@ class _DisplayPageState extends State<DisplayPage> {
                       Column(
                         children: <Widget>[
                           const Text(
-                            "Friday, 2/25/22",
+                            "Friday, 4/01/22",
                             style: TextStyle(
                               color: primarycolor,
                               fontWeight: FontWeight.w500,

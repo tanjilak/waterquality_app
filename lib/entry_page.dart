@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:waterquality_app/device.dart';
-import 'package:waterquality_app/display.dart';
 
 
 import 'constants.dart';
