@@ -6,10 +6,12 @@ import 'package:waterquality_app/home/home_screen.dart';
 import 'package:http/http.dart' as http;
 import 'package:waterquality_app/ph_test.dart';
 import 'package:waterquality_app/prediction.dart';
+import 'package:waterquality_app/temp_test.dart';
 import 'dart:convert';
 
 
 import 'device.dart';
+import 'orp_test.dart';
 
 //display page ONLY FOR ARDUINO UNO //ROOM 302 IN RLC
 
@@ -56,6 +58,66 @@ class _DisplayPageState extends State<DisplayPage> {
   }
   Future<List> getMethod4() async{
     var theUrl = "http://h2ocapstone2022.ddns.net:9999/TuesdayAfternoonData.php";
+    http.Response response = await http.get(Uri.parse(theUrl));
+
+    //  var res = await http.get(Uri.parse(theUrl),headers: {"Accept:":"application/json"});
+    var data = json.decode(response.body);
+
+    return data;
+  }
+
+  //Wednesday
+  Future<List> getMethod5() async{
+    var theUrl = "http://h2ocapstone2022.ddns.net:9999/WednesdayMorningData.php";
+    http.Response response = await http.get(Uri.parse(theUrl));
+
+    //  var res = await http.get(Uri.parse(theUrl),headers: {"Accept:":"application/json"});
+    var data = json.decode(response.body);
+
+    return data;
+  }
+  Future<List> getMethod6() async{
+    var theUrl = "http://h2ocapstone2022.ddns.net:9999/WednesdayAfternoonData.php";
+    http.Response response = await http.get(Uri.parse(theUrl));
+
+    //  var res = await http.get(Uri.parse(theUrl),headers: {"Accept:":"application/json"});
+    var data = json.decode(response.body);
+
+    return data;
+  }
+
+  //Thursday
+  Future<List> getMethod7() async{
+    var theUrl = "http://h2ocapstone2022.ddns.net:9999/WednesdayMorningData.php";
+    http.Response response = await http.get(Uri.parse(theUrl));
+
+    //  var res = await http.get(Uri.parse(theUrl),headers: {"Accept:":"application/json"});
+    var data = json.decode(response.body);
+
+    return data;
+  }
+  Future<List> getMethod8() async{
+    var theUrl = "http://h2ocapstone2022.ddns.net:9999/ThursdayAfternoonData.php";
+    http.Response response = await http.get(Uri.parse(theUrl));
+
+    //  var res = await http.get(Uri.parse(theUrl),headers: {"Accept:":"application/json"});
+    var data = json.decode(response.body);
+
+    return data;
+  }
+
+  //Friday
+  Future<List> getMethod9() async{
+    var theUrl = "http://h2ocapstone2022.ddns.net:9999/FridayMorningData.php";
+    http.Response response = await http.get(Uri.parse(theUrl));
+
+    //  var res = await http.get(Uri.parse(theUrl),headers: {"Accept:":"application/json"});
+    var data = json.decode(response.body);
+
+    return data;
+  }
+  Future<List> getMethod10() async{
+    var theUrl = "http://h2ocapstone2022.ddns.net:9999/FridayAfternoonData.php";
     http.Response response = await http.get(Uri.parse(theUrl));
 
     //  var res = await http.get(Uri.parse(theUrl),headers: {"Accept:":"application/json"});
@@ -142,7 +204,8 @@ class _DisplayPageState extends State<DisplayPage> {
                     ),
                   );
                 },
-              )
+              ),
+
             ],
           ),
         ),
@@ -180,7 +243,7 @@ class _DisplayPageState extends State<DisplayPage> {
 
                     Tab( child: Container(
                       alignment: Alignment.center,
-                      child: const Text("Graphs",
+                      child: const Text("Predictions",
                           ),
                     ),
                     ),
@@ -736,7 +799,7 @@ class _DisplayPageState extends State<DisplayPage> {
 
 
                             child: FutureBuilder<List>(
-                                future: getMethod(),
+                                future: getMethod5(),
                                 builder: (context, snapshot) {
                                   if (snapshot.connectionState == ConnectionState.done) {
                                     if (snapshot.hasData) {
@@ -842,7 +905,7 @@ class _DisplayPageState extends State<DisplayPage> {
 
 
                             child: FutureBuilder<List>(
-                                future: getMethod2(),
+                                future: getMethod6(),
                                 builder: (context, snapshot) {
                                   if (snapshot.connectionState == ConnectionState.done) {
                                     if (snapshot.hasData) {
@@ -972,7 +1035,7 @@ class _DisplayPageState extends State<DisplayPage> {
 
 
                             child: FutureBuilder<List>(
-                                future: getMethod(),
+                                future: getMethod7(),
                                 builder: (context, snapshot) {
                                   if (snapshot.connectionState == ConnectionState.done) {
                                     if (snapshot.hasData) {
@@ -1078,7 +1141,7 @@ class _DisplayPageState extends State<DisplayPage> {
 
 
                             child: FutureBuilder<List>(
-                                future: getMethod2(),
+                                future: getMethod8(),
                                 builder: (context, snapshot) {
                                   if (snapshot.connectionState == ConnectionState.done) {
                                     if (snapshot.hasData) {
@@ -1208,7 +1271,7 @@ class _DisplayPageState extends State<DisplayPage> {
 
 
                             child: FutureBuilder<List>(
-                                future: getMethod(),
+                                future: getMethod9(),
                                 builder: (context, snapshot) {
                                   if (snapshot.connectionState == ConnectionState.done) {
                                     if (snapshot.hasData) {
@@ -1314,7 +1377,7 @@ class _DisplayPageState extends State<DisplayPage> {
 
 
                             child: FutureBuilder<List>(
-                                future: getMethod2(),
+                                future: getMethod10(),
                                 builder: (context, snapshot) {
                                   if (snapshot.connectionState == ConnectionState.done) {
                                     if (snapshot.hasData) {
@@ -1441,7 +1504,7 @@ class _DisplayPageState extends State<DisplayPage> {
                               border: Border(top: BorderSide(color: Colors.grey, width: 0.5))
                           ),
                         ),
-                        const Text("Temperature",
+                        const Text("Temperature (°C)",
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 20,
@@ -1459,7 +1522,7 @@ class _DisplayPageState extends State<DisplayPage> {
                           ),
 
 
-                          child: const phTable(),
+                          child: const tempTable(),
                         ),
                         const Prediction(),
                         const SizedBox(height:10,),
@@ -1489,7 +1552,7 @@ class _DisplayPageState extends State<DisplayPage> {
                           ),
 
 
-                          child: const phTable(),
+                          child: const orpTable(),
                         ),
                         const Prediction(),
                         const SizedBox(height:10,),
@@ -1500,10 +1563,15 @@ class _DisplayPageState extends State<DisplayPage> {
 
 
 
-                    Container(
-                      margin: const EdgeInsets.all(15.0),
-                      child: const Text("insert graphs"),
-                    ),
+                  SingleChildScrollView(
+                  child:
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: <Widget>[
+                          Image.network('http://h2ocapstone2022.ddns.net:9999/python/Temp.png', height: 280,),
+                    ],
+                  ),
+                  ),
 
                   ]
                 ),

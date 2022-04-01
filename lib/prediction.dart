@@ -27,7 +27,7 @@ class _PredictionState extends State<Prediction> {
             MaterialButton(
               color: primarycolor,
               child: const Text(
-                "Predict pH values for next Monday",
+                "Predict pH values for next week",
                 style: TextStyle(fontSize: 15),
               ),
               onPressed: (){},

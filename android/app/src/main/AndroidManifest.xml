@@ -2,8 +2,10 @@
     package="com.example.waterqualityapp.waterquality_app">
     <uses-permission android:name="android.permission.INTERNET"/>
     <application
+
         android:label="waterquality_app"
         android:icon="@mipmap/ic_launcher">
+
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
