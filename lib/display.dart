@@ -1,14 +1,15 @@
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:waterquality_app/constants.dart';
 import 'package:waterquality_app/entry_page.dart';
+import 'package:waterquality_app/graphs.dart';
 import 'package:waterquality_app/home/home_screen.dart';
 import 'package:http/http.dart' as http;
 import 'package:waterquality_app/ph_test.dart';
 import 'package:waterquality_app/prediction.dart';
 import 'package:waterquality_app/temp_test.dart';
 import 'dart:convert';
-
 
 import 'device.dart';
 import 'orp_test.dart';
@@ -28,7 +29,7 @@ class _DisplayPageState extends State<DisplayPage> {
   //different getmethods for each day
 //MONDAY
   Future<List> getMethod() async{
-    var theUrl = "http://h2ocapstone2022.ddns.net:9999/MorningData.php";
+    var theUrl = "http://h2ocapstone2022.ddns.net:9999/app_data/MorningData.php";
   http.Response response = await http.get(Uri.parse(theUrl));
 
   //  var res = await http.get(Uri.parse(theUrl),headers: {"Accept:":"application/json"});
@@ -37,7 +38,7 @@ class _DisplayPageState extends State<DisplayPage> {
   return data;
   }
   Future<List> getMethod2() async{
-    var theUrl = "http://h2ocapstone2022.ddns.net:9999/AfternoonData.php";
+    var theUrl = "http://h2ocapstone2022.ddns.net:9999/app_data/AfternoonData.php";
     http.Response response = await http.get(Uri.parse(theUrl));
 
     //  var res = await http.get(Uri.parse(theUrl),headers: {"Accept:":"application/json"});
@@ -48,7 +49,7 @@ class _DisplayPageState extends State<DisplayPage> {
 
   //Tuesday
   Future<List> getMethod3() async{
-    var theUrl = "http://h2ocapstone2022.ddns.net:9999/TuesdayMorningData.php";
+    var theUrl = "http://h2ocapstone2022.ddns.net:9999/app_data/TuesdayMorningData.php";
     http.Response response = await http.get(Uri.parse(theUrl));
 
     //  var res = await http.get(Uri.parse(theUrl),headers: {"Accept:":"application/json"});
@@ -57,7 +58,7 @@ class _DisplayPageState extends State<DisplayPage> {
     return data;
   }
   Future<List> getMethod4() async{
-    var theUrl = "http://h2ocapstone2022.ddns.net:9999/TuesdayAfternoonData.php";
+    var theUrl = "http://h2ocapstone2022.ddns.net:9999/app_data/TuesdayAfternoonData.php";
     http.Response response = await http.get(Uri.parse(theUrl));
 
     //  var res = await http.get(Uri.parse(theUrl),headers: {"Accept:":"application/json"});
@@ -68,7 +69,7 @@ class _DisplayPageState extends State<DisplayPage> {
 
   //Wednesday
   Future<List> getMethod5() async{
-    var theUrl = "http://h2ocapstone2022.ddns.net:9999/WednesdayMorningData.php";
+    var theUrl = "http://h2ocapstone2022.ddns.net:9999/app_data/WednesdayMorningData.php";
     http.Response response = await http.get(Uri.parse(theUrl));
 
     //  var res = await http.get(Uri.parse(theUrl),headers: {"Accept:":"application/json"});
@@ -77,7 +78,7 @@ class _DisplayPageState extends State<DisplayPage> {
     return data;
   }
   Future<List> getMethod6() async{
-    var theUrl = "http://h2ocapstone2022.ddns.net:9999/WednesdayAfternoonData.php";
+    var theUrl = "http://h2ocapstone2022.ddns.net:9999/app_data/WednesdayAfternoonData.php";
     http.Response response = await http.get(Uri.parse(theUrl));
 
     //  var res = await http.get(Uri.parse(theUrl),headers: {"Accept:":"application/json"});
@@ -88,7 +89,7 @@ class _DisplayPageState extends State<DisplayPage> {
 
   //Thursday
   Future<List> getMethod7() async{
-    var theUrl = "http://h2ocapstone2022.ddns.net:9999/WednesdayMorningData.php";
+    var theUrl = "http://h2ocapstone2022.ddns.net:9999/app_data/WednesdayMorningData.php";
     http.Response response = await http.get(Uri.parse(theUrl));
 
     //  var res = await http.get(Uri.parse(theUrl),headers: {"Accept:":"application/json"});
@@ -97,7 +98,7 @@ class _DisplayPageState extends State<DisplayPage> {
     return data;
   }
   Future<List> getMethod8() async{
-    var theUrl = "http://h2ocapstone2022.ddns.net:9999/ThursdayAfternoonData.php";
+    var theUrl = "http://h2ocapstone2022.ddns.net:9999/app_data/ThursdayAfternoonData.php";
     http.Response response = await http.get(Uri.parse(theUrl));
 
     //  var res = await http.get(Uri.parse(theUrl),headers: {"Accept:":"application/json"});
@@ -108,7 +109,7 @@ class _DisplayPageState extends State<DisplayPage> {
 
   //Friday
   Future<List> getMethod9() async{
-    var theUrl = "http://h2ocapstone2022.ddns.net:9999/FridayMorningData.php";
+    var theUrl = "http://h2ocapstone2022.ddns.net:9999/app_data/FridayMorningData.php";
     http.Response response = await http.get(Uri.parse(theUrl));
 
     //  var res = await http.get(Uri.parse(theUrl),headers: {"Accept:":"application/json"});
@@ -117,7 +118,7 @@ class _DisplayPageState extends State<DisplayPage> {
     return data;
   }
   Future<List> getMethod10() async{
-    var theUrl = "http://h2ocapstone2022.ddns.net:9999/FridayAfternoonData.php";
+    var theUrl = "http://h2ocapstone2022.ddns.net:9999/app_data/FridayAfternoonData.php";
     http.Response response = await http.get(Uri.parse(theUrl));
 
     //  var res = await http.get(Uri.parse(theUrl),headers: {"Accept:":"application/json"});
@@ -125,6 +126,7 @@ class _DisplayPageState extends State<DisplayPage> {
 
     return data;
   }
+
 
 
   @override
@@ -205,6 +207,19 @@ class _DisplayPageState extends State<DisplayPage> {
                   );
                 },
               ),
+              ListTile(
+                title: const Text('Graphs', style: TextStyle(
+                  color: Colors.black54, fontWeight: FontWeight.w500,
+                ),),
+                onTap: (){ Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return const Graphs();
+                    },
+                  ),
+                ); },
+              ),
 
             ],
           ),
@@ -243,7 +258,7 @@ class _DisplayPageState extends State<DisplayPage> {
 
                     Tab( child: Container(
                       alignment: Alignment.center,
-                      child: const Text("Predictions",
+                      child: const Text("Graphs",
                           ),
                     ),
                     ),
@@ -1563,15 +1578,17 @@ class _DisplayPageState extends State<DisplayPage> {
 
 
 
-                  SingleChildScrollView(
-                  child:
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: <Widget>[
-                          Image.network('http://h2ocapstone2022.ddns.net:9999/python/Temp.png', height: 280,),
-                    ],
-                  ),
-                  ),
+                 Column(
+                   children: <Widget>[
+                    Expanded(child: ListView(
+                      children: const <Widget>[
+                     Text("pls"),
+                      ],
+                    ),),
+                   ],
+                 ),
+
+
 
                   ]
                 ),
