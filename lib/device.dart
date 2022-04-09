@@ -25,7 +25,7 @@ class _DeviceDetailsState extends State<DeviceDetails> {
   bool visible = false;
 
   final nameController = TextEditingController();
-  final serialnumberController = TextEditingController();
+  final locationController = TextEditingController();
 
   Future deviceAuthentication() async{
     setState((){
@@ -33,10 +33,10 @@ class _DeviceDetailsState extends State<DeviceDetails> {
     });
 
     String name = nameController.text;
-    String serial_number = serialnumberController.text;
+    String location = locationController.text;
 
     var url = "http://h2ocapstone2022.ddns.net:9999/device1.php";
-    var data = {'name': name, 'serial_number': serial_number};
+    var data = {'name': name, 'location': location};
     http.Response response = await http.post(Uri.parse(url), body: json.encode(data));
 
     var message = jsonDecode(response.body);
@@ -203,18 +203,18 @@ class _DeviceDetailsState extends State<DeviceDetails> {
                 ),
                 const Text(
 
-                  "Serial Number",
+                  "Location",
                   style: TextStyle(
                     color: Colors.black54, fontWeight: FontWeight.w500,
                   ),
                 ),
                 TextFormField(
 
-                controller: serialnumberController,
+                controller: locationController,
 
 
                   decoration: const InputDecoration(
-                    hintText: "Enter Serial Number of Device",
+                    hintText: "Enter Location of Device",
                     hintStyle: TextStyle(
                       color: hintcolor,
                       fontSize: 15,

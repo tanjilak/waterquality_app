@@ -14,7 +14,7 @@ import 'dart:convert';
 import 'device.dart';
 import 'orp_test.dart';
 
-//display page ONLY FOR ARDUINO UNO //ROOM 302 IN RLC
+//display page ONLY FOR ARDUINO MEGA //ROOM 302 IN RLC
 
 //more display pages for other devices //same format //just different php files
 
@@ -29,7 +29,7 @@ class _DisplayPageState extends State<DisplayPage> {
   //different getmethods for each day
 //MONDAY
   Future<List> getMethod() async{
-    var theUrl = "http://h2ocapstone2022.ddns.net:9999/app_data/MorningData.php";
+    var theUrl = "http://h2ocapstone2022.ddns.net:9999/app_data/MondayStagnantWater.php";
   http.Response response = await http.get(Uri.parse(theUrl));
 
   //  var res = await http.get(Uri.parse(theUrl),headers: {"Accept:":"application/json"});
@@ -38,7 +38,7 @@ class _DisplayPageState extends State<DisplayPage> {
   return data;
   }
   Future<List> getMethod2() async{
-    var theUrl = "http://h2ocapstone2022.ddns.net:9999/app_data/AfternoonData.php";
+    var theUrl = "http://h2ocapstone2022.ddns.net:9999/app_data/MondayFlowingWater.php";
     http.Response response = await http.get(Uri.parse(theUrl));
 
     //  var res = await http.get(Uri.parse(theUrl),headers: {"Accept:":"application/json"});
@@ -89,7 +89,7 @@ class _DisplayPageState extends State<DisplayPage> {
 
   //Thursday
   Future<List> getMethod7() async{
-    var theUrl = "http://h2ocapstone2022.ddns.net:9999/app_data/WednesdayMorningData.php";
+    var theUrl = "http://h2ocapstone2022.ddns.net:9999/app_data/ThursdayMorningData.php";
     http.Response response = await http.get(Uri.parse(theUrl));
 
     //  var res = await http.get(Uri.parse(theUrl),headers: {"Accept:":"application/json"});
@@ -156,12 +156,37 @@ class _DisplayPageState extends State<DisplayPage> {
                  ),
               ),
               ListTile(
-                title: const Text('Home', style: TextStyle(
+                title: const Text('Connect to a New Device', style: TextStyle(
+                  color: Colors.black54, fontWeight: FontWeight.w500,
+                ),),
+                onTap: (){ Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return const DeviceDetails();
+                    },
+                  ),
+                ); },
+              ),
+              ListTile(
+                title: const Text('Numerical Data', style: TextStyle(
                   color: Colors.black54, fontWeight: FontWeight.w500,
                 ),),
                 onTap: (){Navigator.pop(context);},
               ),
-
+              ListTile(
+                title: const Text('Graphs', style: TextStyle(
+                  color: Colors.black54, fontWeight: FontWeight.w500,
+                ),),
+                onTap: (){ Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return const Graphs();
+                    },
+                  ),
+                ); },
+              ),
               ListTile(
                 title: const Text('Settings', style: TextStyle(
                   color: Colors.black54, fontWeight: FontWeight.w500,
@@ -177,19 +202,7 @@ class _DisplayPageState extends State<DisplayPage> {
 
                 },
               ),
-              ListTile(
-                title: const Text('Device', style: TextStyle(
-                  color: Colors.black54, fontWeight: FontWeight.w500,
-                ),),
-                onTap: (){ Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return const DeviceDetails();
-                    },
-                  ),
-                ); },
-              ),
+
               ListTile(
                 title: const Text('Sign Out', style: TextStyle(
                   color: Colors.black54, fontWeight: FontWeight.w500,
@@ -207,19 +220,7 @@ class _DisplayPageState extends State<DisplayPage> {
                   );
                 },
               ),
-              ListTile(
-                title: const Text('Graphs', style: TextStyle(
-                  color: Colors.black54, fontWeight: FontWeight.w500,
-                ),),
-                onTap: (){ Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return const Graphs();
-                    },
-                  ),
-                ); },
-              ),
+
 
             ],
           ),
@@ -258,7 +259,7 @@ class _DisplayPageState extends State<DisplayPage> {
 
                     Tab( child: Container(
                       alignment: Alignment.center,
-                      child: const Text("Graphs",
+                      child: const Text("Predictions",
                           ),
                     ),
                     ),
@@ -293,7 +294,7 @@ class _DisplayPageState extends State<DisplayPage> {
                       Column(
                      children: <Widget>[
                       const Text(
-                          "Monday, 3/28/22",
+                          "Monday, 4/04/22",
                         style: TextStyle(
                           color: primarycolor,
                           fontWeight: FontWeight.w500,
@@ -308,7 +309,7 @@ class _DisplayPageState extends State<DisplayPage> {
                          ),
                        ),
                        const Text(
-                         "Morning",
+                         "Stagnant Water",
                          style: TextStyle(
 
                            fontWeight: FontWeight.w500,
@@ -358,7 +359,7 @@ class _DisplayPageState extends State<DisplayPage> {
                                                padding: const EdgeInsets
                                                    .fromLTRB(0, 5, 0, 0),
                                                child: Text("Time: ${snapshot
-                                                   .data![index]['time']} AM",
+                                                   .data![index]['reading_time']}",
                                                  style: const TextStyle(
                                                    fontWeight: FontWeight.w500,
                                                    color: secondarycolor,
@@ -373,17 +374,17 @@ class _DisplayPageState extends State<DisplayPage> {
                                                children: <Widget>[
 
                                                  Text("Temperature: ${snapshot
-                                                     .data![index]['temp']} °C",
+                                                     .data![index]['Temp']} °C",
                                                    style: const TextStyle(
                                                      color: Colors.black,
                                                    ),),
                                                  Text("pH Value: ${snapshot
-                                                     .data![index]['ph']}",
+                                                     .data![index]['Ph']}",
                                                    style: const TextStyle(
                                                      color: Colors.black,
                                                    ),),
                                                  Text("ORP Value: ${snapshot
-                                                     .data![index]['orp']}",
+                                                     .data![index]['ORP']}",
                                                    style: const TextStyle(
                                                      color: Colors.black,
                                                    ),),
@@ -415,7 +416,7 @@ class _DisplayPageState extends State<DisplayPage> {
 
                        const SizedBox(height: 40,),
                        const Text(
-                         "Afternoon",
+                         "Flowing Water",
                          style: TextStyle(
 
                            fontWeight: FontWeight.w500,
@@ -464,7 +465,7 @@ class _DisplayPageState extends State<DisplayPage> {
                                              padding: const EdgeInsets
                                                  .fromLTRB(0, 5, 0, 0),
                                              child: Text("Time: ${snapshot
-                                                 .data![index]['time']} PM",
+                                                 .data![index]['reading_time']}",
                                                style: const TextStyle(
                                                  fontWeight: FontWeight.w500,
                                                  color: secondarycolor,
@@ -479,17 +480,17 @@ class _DisplayPageState extends State<DisplayPage> {
                                              children: <Widget>[
 
                                                Text("Temperature: ${snapshot
-                                                   .data![index]['temp']} °C",
+                                                   .data![index]['Temp']} °C",
                                                  style: const TextStyle(
                                                    color: Colors.black,
                                                  ),),
                                                Text("pH Value: ${snapshot
-                                                   .data![index]['ph']}",
+                                                   .data![index]['Ph']}",
                                                  style: const TextStyle(
                                                    color: Colors.black,
                                                  ),),
                                                Text("ORP Value: ${snapshot
-                                                   .data![index]['orp']}",
+                                                   .data![index]['ORP']}",
                                                  style: const TextStyle(
                                                    color: Colors.black,
                                                  ),),
@@ -519,8 +520,10 @@ class _DisplayPageState extends State<DisplayPage> {
                        ),
 
 
-                       const SizedBox(height: 20,),
-
+                       const SizedBox(height: 40,),
+                       const Text(
+                         "scroll to continue viewing"
+                       ),
                      ],
 
                     ),
@@ -529,7 +532,7 @@ class _DisplayPageState extends State<DisplayPage> {
                       Column(
                         children: <Widget>[
                           const Text(
-                            "Tuesday, 3/29/22",
+                            "Tuesday, 4/05/22",
                             style: TextStyle(
                               color: primarycolor,
                               fontWeight: FontWeight.w500,
@@ -544,7 +547,7 @@ class _DisplayPageState extends State<DisplayPage> {
                             ),
                           ),
                           const Text(
-                            "Morning",
+                            "Stagnant Water",
                             style: TextStyle(
 
                               fontWeight: FontWeight.w500,
@@ -651,7 +654,7 @@ class _DisplayPageState extends State<DisplayPage> {
 
                           const SizedBox(height: 40,),
                           const Text(
-                            "Afternoon",
+                            "Flowing Water",
                             style: TextStyle(
 
                               fontWeight: FontWeight.w500,
@@ -765,7 +768,7 @@ class _DisplayPageState extends State<DisplayPage> {
                       Column(
                         children: <Widget>[
                           const Text(
-                            "Wednesday, 3/30/22",
+                            "Wednesday, 4/06/22",
                             style: TextStyle(
                               color: primarycolor,
                               fontWeight: FontWeight.w500,
@@ -780,7 +783,7 @@ class _DisplayPageState extends State<DisplayPage> {
                             ),
                           ),
                           const Text(
-                            "Morning",
+                            "Stagnant Water",
                             style: TextStyle(
 
                               fontWeight: FontWeight.w500,
@@ -887,7 +890,7 @@ class _DisplayPageState extends State<DisplayPage> {
 
                           const SizedBox(height: 40,),
                           const Text(
-                            "Afternoon",
+                            "Flowing Water",
                             style: TextStyle(
 
                               fontWeight: FontWeight.w500,
@@ -1001,7 +1004,7 @@ class _DisplayPageState extends State<DisplayPage> {
                       Column(
                         children: <Widget>[
                           const Text(
-                            "Thursday, 3/31/22",
+                            "Thursday, 4/07/22",
                             style: TextStyle(
                               color: primarycolor,
                               fontWeight: FontWeight.w500,
@@ -1016,7 +1019,7 @@ class _DisplayPageState extends State<DisplayPage> {
                             ),
                           ),
                           const Text(
-                            "Morning",
+                            "Stagnant Water",
                             style: TextStyle(
 
                               fontWeight: FontWeight.w500,
@@ -1123,7 +1126,7 @@ class _DisplayPageState extends State<DisplayPage> {
 
                           const SizedBox(height: 40,),
                           const Text(
-                            "Afternoon",
+                            "Flowing Water",
                             style: TextStyle(
 
                               fontWeight: FontWeight.w500,
@@ -1237,7 +1240,7 @@ class _DisplayPageState extends State<DisplayPage> {
                       Column(
                         children: <Widget>[
                           const Text(
-                            "Friday, 4/01/22",
+                            "Friday, 4/08/22",
                             style: TextStyle(
                               color: primarycolor,
                               fontWeight: FontWeight.w500,
@@ -1252,7 +1255,7 @@ class _DisplayPageState extends State<DisplayPage> {
                             ),
                           ),
                           const Text(
-                            "Morning",
+                            "Stagnant Water",
                             style: TextStyle(
 
                               fontWeight: FontWeight.w500,
@@ -1359,7 +1362,7 @@ class _DisplayPageState extends State<DisplayPage> {
 
                           const SizedBox(height: 40,),
                           const Text(
-                            "Afternoon",
+                            "Flowing Water",
                             style: TextStyle(
 
                               fontWeight: FontWeight.w500,
@@ -1508,7 +1511,7 @@ class _DisplayPageState extends State<DisplayPage> {
 
                           child: const phTable(),
                         ),
-                        const Prediction(),
+
                         const SizedBox(height:10,),
 
 
@@ -1539,7 +1542,7 @@ class _DisplayPageState extends State<DisplayPage> {
 
                           child: const tempTable(),
                         ),
-                        const Prediction(),
+
                         const SizedBox(height:10,),
 
                         //ORP
@@ -1549,7 +1552,7 @@ class _DisplayPageState extends State<DisplayPage> {
                               border: Border(top: BorderSide(color: Colors.grey, width: 0.5))
                           ),
                         ),
-                        const Text("ORP",
+                        const Text("ORP (mV)",
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 20,
@@ -1569,7 +1572,7 @@ class _DisplayPageState extends State<DisplayPage> {
 
                           child: const orpTable(),
                         ),
-                        const Prediction(),
+
                         const SizedBox(height:10,),
 
                       ],

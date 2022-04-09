@@ -166,24 +166,11 @@ final TextEditingController passwordController = TextEditingController();
       ),
 
 
-        //FORGOT PASS??
-        Positioned(
-          top: 430,
-          child: GestureDetector(
-                onTap: () {},
-               child: const Text("Forgot Password?",
-                 style: TextStyle(
-                      color: hintsecondarycolor,
-                   fontWeight: FontWeight.bold,
-                 ),
-               ),
-          ),
-        ),
 
 
         //GO TO SIGN UP PAGE
         Positioned(
-          top: 460,
+          top: 430,
           child: GestureDetector(
             onTap: () {Navigator.push(
               context,

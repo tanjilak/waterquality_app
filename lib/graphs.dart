@@ -5,6 +5,8 @@ import 'package:waterquality_app/device.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 
 import 'constants.dart';
+import 'display.dart';
+import 'entry_page.dart';
 import 'home/home_screen.dart';
 import 'dart:io';
 
@@ -31,6 +33,7 @@ class _GraphsState extends State<Graphs> {
       appBar: AppBar(
         backgroundColor: hintsecondarycolor,
         toolbarHeight: 40,
+        title: const Text("Building RLC, Room 302"),
       ),
       drawer: Drawer(
         child: ListView(
@@ -48,17 +51,8 @@ class _GraphsState extends State<Graphs> {
                 backgroundColor: Colors.white,
               ),
             ),
-
             ListTile(
-              title: const Text('Settings', style: TextStyle(
-                color: Colors.black54, fontWeight: FontWeight.w500,
-              ),),
-              onTap: () { Navigator.pop(context);
-
-              },
-            ),
-            ListTile(
-              title: const Text('Device', style: TextStyle(
+              title: const Text('Connect to a New Device', style: TextStyle(
                 color: Colors.black54, fontWeight: FontWeight.w500,
               ),),
               onTap: (){ Navigator.push(
@@ -70,6 +64,42 @@ class _GraphsState extends State<Graphs> {
                 ),
               ); },
             ),
+            ListTile(
+              title: const Text('Numerical Data', style: TextStyle(
+                color: Colors.black54, fontWeight: FontWeight.w500,
+              ),),
+              onTap: (){ Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return const DisplayPage();
+                  },
+                ),
+              ); },
+
+            ),
+            ListTile(
+              title: const Text('Graphs', style: TextStyle(
+                color: Colors.black54, fontWeight: FontWeight.w500,
+              ),),
+              onTap: (){Navigator.pop(context);},
+            ),
+            ListTile(
+              title: const Text('Settings', style: TextStyle(
+                color: Colors.black54, fontWeight: FontWeight.w500,
+              ),),
+              onTap: () { Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return const EntryPage();
+                  },
+                ),
+              );
+
+              },
+            ),
+
             ListTile(
               title: const Text('Sign Out', style: TextStyle(
                 color: Colors.black54, fontWeight: FontWeight.w500,
@@ -85,7 +115,6 @@ class _GraphsState extends State<Graphs> {
                     },
                   ),
                 );
-
               },
             ),
           ],
