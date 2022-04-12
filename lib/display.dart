@@ -26,6 +26,18 @@ class DisplayPage extends StatefulWidget{
 
 class _DisplayPageState extends State<DisplayPage> {
 
+
+  //LATESt VALUE
+  Future<List> getLatest() async{
+    var theUrl = "http://h2ocapstone2022.ddns.net:9999/app_data/latest_value.php";
+    http.Response response = await http.get(Uri.parse(theUrl));
+
+    //  var res = await http.get(Uri.parse(theUrl),headers: {"Accept:":"application/json"});
+    var data = json.decode(response.body);
+
+    return data;
+  }
+
   //different getmethods for each day
 //MONDAY
   Future<List> getMethod() async{
@@ -49,7 +61,7 @@ class _DisplayPageState extends State<DisplayPage> {
 
   //Tuesday
   Future<List> getMethod3() async{
-    var theUrl = "http://h2ocapstone2022.ddns.net:9999/app_data/TuesdayMorningData.php";
+    var theUrl = "http://h2ocapstone2022.ddns.net:9999/app_data/TuesdayStagnantWater.php";
     http.Response response = await http.get(Uri.parse(theUrl));
 
     //  var res = await http.get(Uri.parse(theUrl),headers: {"Accept:":"application/json"});
@@ -58,7 +70,7 @@ class _DisplayPageState extends State<DisplayPage> {
     return data;
   }
   Future<List> getMethod4() async{
-    var theUrl = "http://h2ocapstone2022.ddns.net:9999/app_data/TuesdayAfternoonData.php";
+    var theUrl = "http://h2ocapstone2022.ddns.net:9999/app_data/TuesdayFlowingWater.php";
     http.Response response = await http.get(Uri.parse(theUrl));
 
     //  var res = await http.get(Uri.parse(theUrl),headers: {"Accept:":"application/json"});
@@ -69,7 +81,7 @@ class _DisplayPageState extends State<DisplayPage> {
 
   //Wednesday
   Future<List> getMethod5() async{
-    var theUrl = "http://h2ocapstone2022.ddns.net:9999/app_data/WednesdayMorningData.php";
+    var theUrl = "http://h2ocapstone2022.ddns.net:9999/app_data/WednesdayStagnantWater.php";
     http.Response response = await http.get(Uri.parse(theUrl));
 
     //  var res = await http.get(Uri.parse(theUrl),headers: {"Accept:":"application/json"});
@@ -78,7 +90,7 @@ class _DisplayPageState extends State<DisplayPage> {
     return data;
   }
   Future<List> getMethod6() async{
-    var theUrl = "http://h2ocapstone2022.ddns.net:9999/app_data/WednesdayAfternoonData.php";
+    var theUrl = "http://h2ocapstone2022.ddns.net:9999/app_data/WednesdayFlowingWater.php";
     http.Response response = await http.get(Uri.parse(theUrl));
 
     //  var res = await http.get(Uri.parse(theUrl),headers: {"Accept:":"application/json"});
@@ -89,7 +101,7 @@ class _DisplayPageState extends State<DisplayPage> {
 
   //Thursday
   Future<List> getMethod7() async{
-    var theUrl = "http://h2ocapstone2022.ddns.net:9999/app_data/ThursdayMorningData.php";
+    var theUrl = "http://h2ocapstone2022.ddns.net:9999/app_data/ThursdayStagnantWater.php";
     http.Response response = await http.get(Uri.parse(theUrl));
 
     //  var res = await http.get(Uri.parse(theUrl),headers: {"Accept:":"application/json"});
@@ -98,7 +110,7 @@ class _DisplayPageState extends State<DisplayPage> {
     return data;
   }
   Future<List> getMethod8() async{
-    var theUrl = "http://h2ocapstone2022.ddns.net:9999/app_data/ThursdayAfternoonData.php";
+    var theUrl = "http://h2ocapstone2022.ddns.net:9999/app_data/ThursdayFlowingWater.php";
     http.Response response = await http.get(Uri.parse(theUrl));
 
     //  var res = await http.get(Uri.parse(theUrl),headers: {"Accept:":"application/json"});
@@ -109,7 +121,7 @@ class _DisplayPageState extends State<DisplayPage> {
 
   //Friday
   Future<List> getMethod9() async{
-    var theUrl = "http://h2ocapstone2022.ddns.net:9999/app_data/FridayMorningData.php";
+    var theUrl = "http://h2ocapstone2022.ddns.net:9999/app_data/FridayStagnantWater.php";
     http.Response response = await http.get(Uri.parse(theUrl));
 
     //  var res = await http.get(Uri.parse(theUrl),headers: {"Accept:":"application/json"});
@@ -118,7 +130,7 @@ class _DisplayPageState extends State<DisplayPage> {
     return data;
   }
   Future<List> getMethod10() async{
-    var theUrl = "http://h2ocapstone2022.ddns.net:9999/app_data/FridayAfternoonData.php";
+    var theUrl = "http://h2ocapstone2022.ddns.net:9999/app_data/FridayFlowingWater.php";
     http.Response response = await http.get(Uri.parse(theUrl));
 
     //  var res = await http.get(Uri.parse(theUrl),headers: {"Accept:":"application/json"});
@@ -228,7 +240,7 @@ class _DisplayPageState extends State<DisplayPage> {
         body:
 
        DefaultTabController(
-          length: 3,
+          length: 4,
           child: Column(
             children:<Widget>[
               const SizedBox(
@@ -242,6 +254,14 @@ class _DisplayPageState extends State<DisplayPage> {
                   labelColor: primarycolor,
                   unselectedLabelColor: hintsecondarycolor,
                   tabs: [
+                    Tab(
+                      child: Container(
+                        alignment: Alignment.center,
+                        child: const Text("Data",
+
+                        ),
+                      ),
+                    ),
                     Tab(
                       child: Container(
                         alignment: Alignment.center,
@@ -259,7 +279,7 @@ class _DisplayPageState extends State<DisplayPage> {
 
                     Tab( child: Container(
                       alignment: Alignment.center,
-                      child: const Text("Predictions",
+                      child: const Text("Forecast",
                           ),
                     ),
                     ),
@@ -281,6 +301,110 @@ class _DisplayPageState extends State<DisplayPage> {
 
                 child: TabBarView(
                   children:[
+                  //latest
+
+                    Column(
+                      children: <Widget>[
+                        const SizedBox(height: 30,),
+                        const Text("Currently: ",  style: TextStyle(
+                          color: primarycolor,
+                          fontWeight: FontWeight.w500,
+                          fontSize: 25,
+                        ),),
+                        const SizedBox(height:20),
+                          Container(
+                            alignment: Alignment.center,
+                            height: 290,
+                            width: 300,
+
+                          child:
+                          FutureBuilder<List>(
+                              future: getLatest(),
+                              builder: (context, snapshot) {
+                                if (snapshot.connectionState == ConnectionState.done) {
+                                  if (snapshot.hasData) {
+
+                                    // Success case
+                                    return ListView.builder(
+                                      itemBuilder: (context, index) {
+                                        return Card(
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(15.0),
+                                            side: const BorderSide(
+                                              color: hintsecondarycolor,
+                                              width:5.0,
+                                            ),
+                                          ),
+                                          color: blueblue,
+                                          elevation: 5,
+                                          child: ListTile(
+                                            title:
+                                            Container(
+                                              padding: const EdgeInsets
+                                                  .fromLTRB(0,10, 0, 20),
+                                              child: Text("Time: ${snapshot
+                                                  .data![index]['reading_time']}",
+                                                style: const TextStyle(
+                                                  fontWeight: FontWeight.w500,
+                                                  color: Colors.black,
+                                                  fontSize: 30,
+                                                ),),),
+
+                                            subtitle:
+                                            Column(
+                                              mainAxisAlignment: MainAxisAlignment
+                                                  .center,
+                                              crossAxisAlignment: CrossAxisAlignment
+                                                  .start,
+                                              children: <Widget>[
+
+                                                Text("Temperature: ${snapshot
+                                                    .data![index]['Temp']} °C",
+                                                  style: const TextStyle(
+                                                    color: Colors.black,
+                                                    fontSize: 20,
+                                                  ),),
+                                                Text("pH: ${snapshot
+                                                    .data![index]['Ph']}",
+                                                  style: const TextStyle(
+                                                    color: Colors.black,
+                                                    fontSize: 20,
+                                                  ),),
+                                                Text("ORP: ${snapshot
+                                                    .data![index]['ORP']} mV",
+                                                  style: const TextStyle(
+                                                    color: Colors.black,
+                                                    fontSize: 20,
+                                                  ),),
+                                                const Text("     "),
+                                              ],
+
+                                            ),
+
+                                          ),
+                                        );
+                                      },
+                                      itemCount: snapshot.data!.length,
+                                    );
+
+                                  }
+                                  // Error case
+                                  return const Text('Error');
+                                } else {
+
+                                  return const Center(
+                                    child: CircularProgressIndicator(),
+                                  );
+                                }
+                              }
+
+                          ),
+
+
+                        ),
+                       ],),
+
+
 
                     //day tab
                     PageView(
@@ -289,6 +413,7 @@ class _DisplayPageState extends State<DisplayPage> {
                     children: <Widget>[
 
                       //SHOW ONLY ONE WEEK (THE CURRENT WEEK)
+                      //UPDATES NEW WEEK IF MONDAY HAS NEW VALUES
 
                       //MONDAY
                       Column(
@@ -384,7 +509,7 @@ class _DisplayPageState extends State<DisplayPage> {
                                                      color: Colors.black,
                                                    ),),
                                                  Text("ORP Value: ${snapshot
-                                                     .data![index]['ORP']}",
+                                                     .data![index]['ORP']} mV",
                                                    style: const TextStyle(
                                                      color: Colors.black,
                                                    ),),
@@ -490,7 +615,7 @@ class _DisplayPageState extends State<DisplayPage> {
                                                    color: Colors.black,
                                                  ),),
                                                Text("ORP Value: ${snapshot
-                                                   .data![index]['ORP']}",
+                                                   .data![index]['ORP']} mV",
                                                  style: const TextStyle(
                                                    color: Colors.black,
                                                  ),),
@@ -597,7 +722,7 @@ class _DisplayPageState extends State<DisplayPage> {
                                                 padding: const EdgeInsets
                                                     .fromLTRB(0, 5, 0, 0),
                                                 child: Text("Time: ${snapshot
-                                                    .data![index]['time']} AM",
+                                                    .data![index]['reading_time']}",
                                                   style: const TextStyle(
                                                     fontWeight: FontWeight.w500,
                                                     color: secondarycolor,
@@ -612,17 +737,17 @@ class _DisplayPageState extends State<DisplayPage> {
                                                 children: <Widget>[
 
                                                   Text("Temperature: ${snapshot
-                                                      .data![index]['temp']} °C",
+                                                      .data![index]['Temp']} °C",
                                                     style: const TextStyle(
                                                       color: Colors.black,
                                                     ),),
                                                   Text("pH Value: ${snapshot
-                                                      .data![index]['ph']}",
+                                                      .data![index]['Ph']}",
                                                     style: const TextStyle(
                                                       color: Colors.black,
                                                     ),),
                                                   Text("ORP Value: ${snapshot
-                                                      .data![index]['orp']}",
+                                                      .data![index]['ORP']} mV",
                                                     style: const TextStyle(
                                                       color: Colors.black,
                                                     ),),
@@ -703,7 +828,7 @@ class _DisplayPageState extends State<DisplayPage> {
                                                 padding: const EdgeInsets
                                                     .fromLTRB(0, 5, 0, 0),
                                                 child: Text("Time: ${snapshot
-                                                    .data![index]['time']} PM",
+                                                    .data![index]['reading_time']}",
                                                   style: const TextStyle(
                                                     fontWeight: FontWeight.w500,
                                                     color: secondarycolor,
@@ -718,17 +843,17 @@ class _DisplayPageState extends State<DisplayPage> {
                                                 children: <Widget>[
 
                                                   Text("Temperature: ${snapshot
-                                                      .data![index]['temp']} °C",
+                                                      .data![index]['Temp']} °C",
                                                     style: const TextStyle(
                                                       color: Colors.black,
                                                     ),),
                                                   Text("pH Value: ${snapshot
-                                                      .data![index]['ph']}",
+                                                      .data![index]['Ph']}",
                                                     style: const TextStyle(
                                                       color: Colors.black,
                                                     ),),
                                                   Text("ORP Value: ${snapshot
-                                                      .data![index]['orp']}",
+                                                      .data![index]['ORP']} mV",
                                                     style: const TextStyle(
                                                       color: Colors.black,
                                                     ),),
@@ -833,7 +958,7 @@ class _DisplayPageState extends State<DisplayPage> {
                                                 padding: const EdgeInsets
                                                     .fromLTRB(0, 5, 0, 0),
                                                 child: Text("Time: ${snapshot
-                                                    .data![index]['time']} AM",
+                                                    .data![index]['reading_time']}",
                                                   style: const TextStyle(
                                                     fontWeight: FontWeight.w500,
                                                     color: secondarycolor,
@@ -848,17 +973,17 @@ class _DisplayPageState extends State<DisplayPage> {
                                                 children: <Widget>[
 
                                                   Text("Temperature: ${snapshot
-                                                      .data![index]['temp']} °C",
+                                                      .data![index]['Temp']} °C",
                                                     style: const TextStyle(
                                                       color: Colors.black,
                                                     ),),
                                                   Text("pH Value: ${snapshot
-                                                      .data![index]['ph']}",
+                                                      .data![index]['Ph']}",
                                                     style: const TextStyle(
                                                       color: Colors.black,
                                                     ),),
                                                   Text("ORP Value: ${snapshot
-                                                      .data![index]['orp']}",
+                                                      .data![index]['ORP']} mV",
                                                     style: const TextStyle(
                                                       color: Colors.black,
                                                     ),),
@@ -939,7 +1064,7 @@ class _DisplayPageState extends State<DisplayPage> {
                                                 padding: const EdgeInsets
                                                     .fromLTRB(0, 5, 0, 0),
                                                 child: Text("Time: ${snapshot
-                                                    .data![index]['time']} PM",
+                                                    .data![index]['reading_time']} ",
                                                   style: const TextStyle(
                                                     fontWeight: FontWeight.w500,
                                                     color: secondarycolor,
@@ -954,17 +1079,17 @@ class _DisplayPageState extends State<DisplayPage> {
                                                 children: <Widget>[
 
                                                   Text("Temperature: ${snapshot
-                                                      .data![index]['temp']} °C",
+                                                      .data![index]['Temp']} °C",
                                                     style: const TextStyle(
                                                       color: Colors.black,
                                                     ),),
                                                   Text("pH Value: ${snapshot
-                                                      .data![index]['ph']}",
+                                                      .data![index]['Ph']}",
                                                     style: const TextStyle(
                                                       color: Colors.black,
                                                     ),),
                                                   Text("ORP Value: ${snapshot
-                                                      .data![index]['orp']}",
+                                                      .data![index]['ORP']} mV",
                                                     style: const TextStyle(
                                                       color: Colors.black,
                                                     ),),
@@ -1069,7 +1194,7 @@ class _DisplayPageState extends State<DisplayPage> {
                                                 padding: const EdgeInsets
                                                     .fromLTRB(0, 5, 0, 0),
                                                 child: Text("Time: ${snapshot
-                                                    .data![index]['time']} AM",
+                                                    .data![index]['reading_time']}",
                                                   style: const TextStyle(
                                                     fontWeight: FontWeight.w500,
                                                     color: secondarycolor,
@@ -1084,17 +1209,17 @@ class _DisplayPageState extends State<DisplayPage> {
                                                 children: <Widget>[
 
                                                   Text("Temperature: ${snapshot
-                                                      .data![index]['temp']} °C",
+                                                      .data![index]['Temp']} °C",
                                                     style: const TextStyle(
                                                       color: Colors.black,
                                                     ),),
                                                   Text("pH Value: ${snapshot
-                                                      .data![index]['ph']}",
+                                                      .data![index]['Ph']}",
                                                     style: const TextStyle(
                                                       color: Colors.black,
                                                     ),),
                                                   Text("ORP Value: ${snapshot
-                                                      .data![index]['orp']}",
+                                                      .data![index]['ORP']} mV",
                                                     style: const TextStyle(
                                                       color: Colors.black,
                                                     ),),
@@ -1175,7 +1300,7 @@ class _DisplayPageState extends State<DisplayPage> {
                                                 padding: const EdgeInsets
                                                     .fromLTRB(0, 5, 0, 0),
                                                 child: Text("Time: ${snapshot
-                                                    .data![index]['time']} PM",
+                                                    .data![index]['reading_time']}",
                                                   style: const TextStyle(
                                                     fontWeight: FontWeight.w500,
                                                     color: secondarycolor,
@@ -1190,17 +1315,17 @@ class _DisplayPageState extends State<DisplayPage> {
                                                 children: <Widget>[
 
                                                   Text("Temperature: ${snapshot
-                                                      .data![index]['temp']} °C",
+                                                      .data![index]['Temp']} °C",
                                                     style: const TextStyle(
                                                       color: Colors.black,
                                                     ),),
                                                   Text("pH Value: ${snapshot
-                                                      .data![index]['ph']}",
+                                                      .data![index]['Ph']}",
                                                     style: const TextStyle(
                                                       color: Colors.black,
                                                     ),),
                                                   Text("ORP Value: ${snapshot
-                                                      .data![index]['orp']}",
+                                                      .data![index]['ORP']} mV",
                                                     style: const TextStyle(
                                                       color: Colors.black,
                                                     ),),
@@ -1305,7 +1430,7 @@ class _DisplayPageState extends State<DisplayPage> {
                                                 padding: const EdgeInsets
                                                     .fromLTRB(0, 5, 0, 0),
                                                 child: Text("Time: ${snapshot
-                                                    .data![index]['time']} AM",
+                                                    .data![index]['reading_time']}",
                                                   style: const TextStyle(
                                                     fontWeight: FontWeight.w500,
                                                     color: secondarycolor,
@@ -1320,17 +1445,17 @@ class _DisplayPageState extends State<DisplayPage> {
                                                 children: <Widget>[
 
                                                   Text("Temperature: ${snapshot
-                                                      .data![index]['temp']} °C",
+                                                      .data![index]['Temp']} °C",
                                                     style: const TextStyle(
                                                       color: Colors.black,
                                                     ),),
                                                   Text("pH Value: ${snapshot
-                                                      .data![index]['ph']}",
+                                                      .data![index]['Ph']}",
                                                     style: const TextStyle(
                                                       color: Colors.black,
                                                     ),),
                                                   Text("ORP Value: ${snapshot
-                                                      .data![index]['orp']}",
+                                                      .data![index]['ORP']} mV",
                                                     style: const TextStyle(
                                                       color: Colors.black,
                                                     ),),
@@ -1411,7 +1536,7 @@ class _DisplayPageState extends State<DisplayPage> {
                                                 padding: const EdgeInsets
                                                     .fromLTRB(0, 5, 0, 0),
                                                 child: Text("Time: ${snapshot
-                                                    .data![index]['time']} PM",
+                                                    .data![index]['reading_time']}",
                                                   style: const TextStyle(
                                                     fontWeight: FontWeight.w500,
                                                     color: secondarycolor,
@@ -1426,17 +1551,17 @@ class _DisplayPageState extends State<DisplayPage> {
                                                 children: <Widget>[
 
                                                   Text("Temperature: ${snapshot
-                                                      .data![index]['temp']} °C",
+                                                      .data![index]['Temp']} °C",
                                                     style: const TextStyle(
                                                       color: Colors.black,
                                                     ),),
                                                   Text("pH Value: ${snapshot
-                                                      .data![index]['ph']}",
+                                                      .data![index]['Ph']}",
                                                     style: const TextStyle(
                                                       color: Colors.black,
                                                     ),),
                                                   Text("ORP Value: ${snapshot
-                                                      .data![index]['orp']}",
+                                                      .data![index]['ORP']} mV",
                                                     style: const TextStyle(
                                                       color: Colors.black,
                                                     ),),
