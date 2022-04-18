@@ -4,8 +4,7 @@ require('connection.php');
 $makeQuery = "SELECT * FROM data WHERE time_of_day = 'Afternoon' AND week_id='1'";
 
 $servername = "localhost:3306";
-$username = "admin";
-$password = "Capstone2022";
+
 
 $connection = new PDO("mysql:host=localhost;dbname=h2o", $username, $password);
 $statement = $connection->prepare($makeQuery);
