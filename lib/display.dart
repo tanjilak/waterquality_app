@@ -38,6 +38,17 @@ class _DisplayPageState extends State<DisplayPage> {
     return data;
   }
 
+  Future<List> getAll() async{
+    var theUrl = "http://h2ocapstone2022.ddns.net:9999/app_data/AllData.php";
+    http.Response response = await http.get(Uri.parse(theUrl));
+
+    //  var res = await http.get(Uri.parse(theUrl),headers: {"Accept:":"application/json"});
+    var data = json.decode(response.body);
+
+    return data;
+  }
+
+
   //different getmethods for each day
 //MONDAY
   Future<List> getMethod() async{
@@ -139,6 +150,13 @@ class _DisplayPageState extends State<DisplayPage> {
     return data;
   }
 
+  late Future<List> _getLatest;
+
+  @override
+  void initState() {
+    super.initState();
+    _getLatest = getLatest();
+  }
 
 
   @override
@@ -305,16 +323,41 @@ class _DisplayPageState extends State<DisplayPage> {
 
                     Column(
                       children: <Widget>[
-                        const SizedBox(height: 30,),
-                        const Text("Currently: ",  style: TextStyle(
+                        ElevatedButton(
+                          onPressed: () {
+                            setState(() {
+                              _getLatest = getLatest();
+                            });
+                          },
+                          child: Text('Update Data'.toUpperCase()),
+                          style: ButtonStyle(
+
+                            backgroundColor: MaterialStateProperty.all<Color>(primarycolor),
+                              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(18.0),
+
+                                  )
+                              ),
+                          ),
+                        ),
+                        const SizedBox(height: 10,),
+                        Container(
+                          height: 10,
+                          decoration: const BoxDecoration(
+                              border: Border(top: BorderSide(color: Colors.grey, width: 0.5))
+                          ),
+                        ),
+                        const SizedBox(height: 10,),
+                        const Text("Currently",  style: TextStyle(
                           color: primarycolor,
                           fontWeight: FontWeight.w500,
                           fontSize: 25,
                         ),),
                         const SizedBox(height:20),
-                          Container(
+                        Container(
                             alignment: Alignment.center,
-                            height: 290,
+                            height: 180,
                             width: 300,
 
                           child:
@@ -400,6 +443,117 @@ class _DisplayPageState extends State<DisplayPage> {
 
                           ),
 
+
+                        ),
+                        const SizedBox(height:15),
+                        Container(
+                          height: 10,
+                          decoration: const BoxDecoration(
+                              border: Border(top: BorderSide(color: Colors.grey, width: 0.5))
+                          ),
+                        ),
+                        const Text("All Data",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,),
+                        ),
+                        const SizedBox(height:10),
+                        Container(
+                          alignment: Alignment.center,
+                          height: 250,
+                          width: 290,
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: const Color(0x9900738C),
+
+                            ),
+
+                            boxShadow: const [
+                              BoxShadow(
+                                  color: Color(0x40000000),
+                                  blurRadius: 4,
+                                  spreadRadius: 0,
+                                  offset: Offset(0, 4)
+                              ),
+                            ],
+                            color: hintsecondarycolor,
+
+                          ),
+
+
+                          child: FutureBuilder<List>(
+                              future: getAll(),
+                              builder: (context, snapshot) {
+                                if (snapshot.connectionState == ConnectionState.done) {
+                                  if (snapshot.hasData) {
+
+                                    // Success case
+                                    return ListView.builder(
+                                      itemBuilder: (context, index) {
+                                        return Card(
+                                          elevation: 5,
+                                          child: ListTile(
+                                            title:
+                                            Container(
+                                              padding: const EdgeInsets
+                                                  .fromLTRB(0, 5, 0, 0),
+                                              child: Text("Date: ${snapshot
+                                                  .data![index]['date']}",
+                                                style: const TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                  color: Colors.black,
+                                                ),),),
+
+                                            subtitle:
+                                            Column(
+                                              mainAxisAlignment: MainAxisAlignment
+                                                  .start,
+                                              crossAxisAlignment: CrossAxisAlignment
+                                                  .start,
+                                              children: <Widget>[
+                                                Text("Time: ${snapshot
+                                                    .data![index]['reading_time']}",
+                                                  style: const TextStyle(
+                                                    color: secondarycolor,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),),
+                                                Text("Temperature: ${snapshot
+                                                    .data![index]['Temp']} °C",
+                                                  style: const TextStyle(
+                                                    color: Colors.black,
+                                                  ),),
+                                                Text("pH Value: ${snapshot
+                                                    .data![index]['Ph']}",
+                                                  style: const TextStyle(
+                                                    color: Colors.black,
+                                                  ),),
+                                                Text("ORP Value: ${snapshot
+                                                    .data![index]['ORP']} mV",
+                                                  style: const TextStyle(
+                                                    color: Colors.black,
+                                                  ),),
+                                              ],
+
+                                            ),
+
+                                          ),
+                                        );
+                                      },
+                                      itemCount: snapshot.data!.length,
+                                    );
+
+                                  }
+                                  // Error case
+                                  return const Text('Not Available Yet');
+                                } else {
+
+                                  return const Center(
+                                    child: CircularProgressIndicator(),
+                                  );
+                                }
+                              }
+
+                          ),
 
                         ),
                        ],),
@@ -1705,16 +1859,48 @@ class _DisplayPageState extends State<DisplayPage> {
                   ),
 
 
-
+                  SingleChildScrollView(
+                    child:
                  Column(
                    children: <Widget>[
-                    Expanded(child: ListView(
-                      children: const <Widget>[
-                     Text("pls"),
-                      ],
-                    ),),
+                     const Text("pH",
+                       style: TextStyle(
+                         fontWeight: FontWeight.bold,
+                         fontSize: 20,),
+                     ),
+                    Container(
+                      child: Image.network('http://h2ocapstone2022.ddns.net:9999/python/LSTM/PH/PH_LSTM_ML.png'),
+                    ),
+                     Container(
+                       height: 10,
+                       decoration: const BoxDecoration(
+                           border: Border(top: BorderSide(color: Colors.grey, width: 0.5))
+                       ),
+                     ),
+                     const Text("Temperature",
+                       style: TextStyle(
+                         fontWeight: FontWeight.bold,
+                         fontSize: 20,),
+                     ),
+                     Container(
+                       child: Image.network('http://h2ocapstone2022.ddns.net:9999/python/LSTM/Temp/Temp_LSTM_ML.png'),
+                     ),
+                     Container(
+                       height: 10,
+                       decoration: const BoxDecoration(
+                           border: Border(top: BorderSide(color: Colors.grey, width: 0.5))
+                       ),
+                     ),
+                     const Text("ORP",
+                       style: TextStyle(
+                         fontWeight: FontWeight.bold,
+                         fontSize: 20,),
+                     ),
+                     Container(
+                       child: Image.network('http://h2ocapstone2022.ddns.net:9999/python/LSTM/ORP/ORP_LSTM_ML.png'),
+                     ),
                    ],
-                 ),
+                 ),),
 
 
 

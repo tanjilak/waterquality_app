@@ -3,6 +3,8 @@ import 'package:csv/csv.dart';
 import 'dart:async' show Future;
 import 'package:flutter/services.dart' show rootBundle;
 
+import 'constants.dart';
+
 class orpTable extends StatefulWidget {
   const orpTable({Key? key}) : super(key: key);
 
@@ -14,7 +16,7 @@ class _orpTableState extends State<orpTable> {
   List<List<dynamic>> data = [];
 
   loadAsset() async {
-    final myData = await rootBundle.loadString("assets/orp.csv");
+    final myData = await rootBundle.loadString("http://h2ocapstone2022.ddns.net:9999/app_data/csv_files/orp.csv");
     List<List<dynamic>> csvTable = const CsvToListConverter().convert(myData);
 
     return csvTable;
@@ -35,7 +37,9 @@ class _orpTableState extends State<orpTable> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
           child: const Icon(Icons.refresh),
-          onPressed: load),
+          onPressed: load,
+        backgroundColor: primarycolor,
+      ),
 
       body: SingleChildScrollView(
         child: Table(

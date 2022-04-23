@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:csv/csv.dart';
 import 'dart:async' show Future;
 import 'package:flutter/services.dart' show rootBundle;
+import 'package:waterquality_app/constants.dart';
 
 class phTable extends StatefulWidget {
   const phTable({Key? key}) : super(key: key);
@@ -35,7 +36,9 @@ class _phTableState extends State<phTable> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
           child: const Icon(Icons.refresh),
-          onPressed: load),
+          onPressed: load,
+            backgroundColor: primarycolor,
+      ),
 
       body: SingleChildScrollView(
         child: Table(

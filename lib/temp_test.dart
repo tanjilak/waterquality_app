@@ -3,6 +3,8 @@ import 'package:csv/csv.dart';
 import 'dart:async' show Future;
 import 'package:flutter/services.dart' show rootBundle;
 
+import 'constants.dart';
+
 class tempTable extends StatefulWidget {
   const tempTable({Key? key}) : super(key: key);
 
@@ -35,7 +37,9 @@ class _tempTableState extends State<tempTable> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
           child: const Icon(Icons.refresh),
-          onPressed: load),
+          onPressed: load,
+        backgroundColor: primarycolor,
+      ),
 
       body: SingleChildScrollView(
         child: Table(
