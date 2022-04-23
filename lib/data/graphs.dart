@@ -4,10 +4,10 @@ import 'package:waterquality_app/device.dart';
 
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 
-import 'constants.dart';
+import '../constants.dart';
 import 'display.dart';
-import 'entry_page.dart';
-import 'home/home_screen.dart';
+import '../settings.dart';
+import '../home/home_screen.dart';
 import 'dart:io';
 
 class Graphs extends StatefulWidget{

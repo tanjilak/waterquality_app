@@ -4,7 +4,7 @@ import 'package:waterquality_app/background.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:waterquality_app/signin/sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:waterquality_app/entry_page.dart';
+import 'package:waterquality_app/settings.dart';
 
 class SignUpLayout extends StatefulWidget {
   const SignUpLayout({Key? key,}) : super(key: key);

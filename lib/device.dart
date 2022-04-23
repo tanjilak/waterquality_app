@@ -4,9 +4,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:waterquality_app/constants.dart';
-import 'package:waterquality_app/display.dart';
+import 'package:waterquality_app/data/display.dart';
 
-import 'entry_page.dart';
+import 'settings.dart';
 import 'home/home_screen.dart';
 
 //https://flutter-examples.com/flutter-online-user-login-using-php-mysql-api/
