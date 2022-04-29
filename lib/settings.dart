@@ -42,17 +42,9 @@ class _EntryPageState extends State<EntryPage> {
                 backgroundColor: Colors.white,
               ),
             ),
-
+            
             ListTile(
-              title: const Text('Settings', style: TextStyle(
-                color: Colors.black54, fontWeight: FontWeight.w500,
-              ),),
-              onTap: () { Navigator.pop(context);
-
-              },
-            ),
-            ListTile(
-              title: const Text('Device', style: TextStyle(
+              title: const Text('Connect to a New Device', style: TextStyle(
                 color: Colors.black54, fontWeight: FontWeight.w500,
               ),),
               onTap: (){ Navigator.push(
@@ -64,6 +56,15 @@ class _EntryPageState extends State<EntryPage> {
                 ),
               ); },
             ),
+            ListTile(
+              title: const Text('Settings', style: TextStyle(
+                color: Colors.black54, fontWeight: FontWeight.w500,
+              ),),
+              onTap: () { Navigator.pop(context);
+
+              },
+            ),
+
             ListTile(
               title: const Text('Sign Out', style: TextStyle(
                 color: Colors.black54, fontWeight: FontWeight.w500,

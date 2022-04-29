@@ -111,6 +111,13 @@ class _DeviceDetailsState extends State<DeviceDetails> {
             ),
 
             ListTile(
+              title: const Text('Connect to a New Device', style: TextStyle(
+                color: Colors.black54, fontWeight: FontWeight.w500,
+              ),),
+              onTap: (){ Navigator.pop(context);},
+            ),
+
+            ListTile(
               title: const Text('Settings', style: TextStyle(
                 color: Colors.black54, fontWeight: FontWeight.w500,
               ),),
@@ -125,12 +132,7 @@ class _DeviceDetailsState extends State<DeviceDetails> {
 
               },
             ),
-            ListTile(
-              title: const Text('Device', style: TextStyle(
-                color: Colors.black54, fontWeight: FontWeight.w500,
-              ),),
-              onTap: (){ Navigator.pop(context);},
-            ),
+
             ListTile(
               title: const Text('Sign Out', style: TextStyle(
                 color: Colors.black54, fontWeight: FontWeight.w500,

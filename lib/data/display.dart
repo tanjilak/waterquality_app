@@ -336,24 +336,7 @@ class _DisplayPageState extends State<DisplayPage> {
   Column buildColumn() {
     return Column(
                     children: <Widget>[
-                      ElevatedButton(
-                        onPressed: () {
-                          setState(() {
-                            _getLatest = getLatest();
-                          });
-                        },
-                        child: Text('Update Data'.toUpperCase()),
-                        style: ButtonStyle(
-
-                          backgroundColor: MaterialStateProperty.all<Color>(primarycolor),
-                            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                                RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(18.0),
-
-                                )
-                            ),
-                        ),
-                      ),
+                      buildElevatedButton(),
                       const SizedBox(height: 10,),
                       Container(
                         height: 10,
@@ -362,7 +345,7 @@ class _DisplayPageState extends State<DisplayPage> {
                         ),
                       ),
                       const SizedBox(height: 10,),
-                      const Text("Currently",  style: TextStyle(
+                      const Text("Latest Value",  style: TextStyle(
                         color: primarycolor,
                         fontWeight: FontWeight.w500,
                         fontSize: 25,
@@ -572,6 +555,27 @@ class _DisplayPageState extends State<DisplayPage> {
                      ],);
   }
 
+  ElevatedButton buildElevatedButton() {
+    return ElevatedButton(
+                      onPressed: () {
+                        setState(() {
+                          _getLatest = getLatest();
+                        });
+                      },
+                      child: Text('Update Data'.toUpperCase()),
+                      style: ButtonStyle(
+
+                        backgroundColor: MaterialStateProperty.all<Color>(primarycolor),
+                          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                              RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(18.0),
+
+                              )
+                          ),
+                      ),
+                    );
+  }
+
   PageView buildPageView(PageController controller) {
     return PageView(
                     controller: controller,
@@ -585,7 +589,7 @@ class _DisplayPageState extends State<DisplayPage> {
                     Column(
                    children: <Widget>[
                     const Text(
-                        "Monday, 4/04/22",
+                        "Monday",
                       style: TextStyle(
                         color: primarycolor,
                         fontWeight: FontWeight.w500,
@@ -599,6 +603,7 @@ class _DisplayPageState extends State<DisplayPage> {
                            border: Border(top: BorderSide(color: Colors.grey, width: 0.2))
                        ),
                      ),
+                     const SizedBox(height: 10,),
                      const Text(
                        "Stagnant Water",
                        style: TextStyle(
@@ -649,11 +654,11 @@ class _DisplayPageState extends State<DisplayPage> {
                                            Container(
                                              padding: const EdgeInsets
                                                  .fromLTRB(0, 5, 0, 0),
-                                             child: Text("Time: ${snapshot
-                                                 .data![index]['reading_time']}",
+                                             child: Text("Date: ${snapshot
+                                                 .data![index]['date']}",
                                                style: const TextStyle(
-                                                 fontWeight: FontWeight.w500,
-                                                 color: secondarycolor,
+                                                 fontWeight: FontWeight.bold,
+                                                 color: Colors.black,
                                                ),),),
 
                                            subtitle:
@@ -663,7 +668,12 @@ class _DisplayPageState extends State<DisplayPage> {
                                              crossAxisAlignment: CrossAxisAlignment
                                                  .start,
                                              children: <Widget>[
-
+                                               Text("Time: ${snapshot
+                                                   .data![index]['reading_time']}",
+                                                 style: const TextStyle(
+                                                   color: secondarycolor,
+                                                   fontWeight: FontWeight.bold,
+                                                 ),),
                                                Text("Temperature: ${snapshot
                                                    .data![index]['Temp']} °C",
                                                  style: const TextStyle(
@@ -755,11 +765,11 @@ class _DisplayPageState extends State<DisplayPage> {
                                          Container(
                                            padding: const EdgeInsets
                                                .fromLTRB(0, 5, 0, 0),
-                                           child: Text("Time: ${snapshot
-                                               .data![index]['reading_time']}",
+                                           child: Text("Date: ${snapshot
+                                               .data![index]['date']}",
                                              style: const TextStyle(
-                                               fontWeight: FontWeight.w500,
-                                               color: secondarycolor,
+                                               fontWeight: FontWeight.bold,
+                                               color: Colors.black,
                                              ),),),
 
                                          subtitle:
@@ -769,7 +779,12 @@ class _DisplayPageState extends State<DisplayPage> {
                                            crossAxisAlignment: CrossAxisAlignment
                                                .start,
                                            children: <Widget>[
-
+                                             Text("Time: ${snapshot
+                                                 .data![index]['reading_time']}",
+                                               style: const TextStyle(
+                                                 color: secondarycolor,
+                                                 fontWeight: FontWeight.bold,
+                                               ),),
                                              Text("Temperature: ${snapshot
                                                  .data![index]['Temp']} °C",
                                                style: const TextStyle(
@@ -811,10 +826,9 @@ class _DisplayPageState extends State<DisplayPage> {
                      ),
 
 
-                     const SizedBox(height: 40,),
-                     const Text(
-                       "scroll to continue viewing"
-                     ),
+                     const SizedBox(height: 30,),
+
+                     buildElevatedButton(),
                    ],
 
                   ),
@@ -823,7 +837,7 @@ class _DisplayPageState extends State<DisplayPage> {
                     Column(
                       children: <Widget>[
                         const Text(
-                          "Tuesday, 4/05/22",
+                          "Tuesday",
                           style: TextStyle(
                             color: primarycolor,
                             fontWeight: FontWeight.w500,
@@ -837,6 +851,7 @@ class _DisplayPageState extends State<DisplayPage> {
                               border: Border(top: BorderSide(color: Colors.grey, width: 0.2))
                           ),
                         ),
+                        const SizedBox(height: 10,),
                         const Text(
                           "Stagnant Water",
                           style: TextStyle(
@@ -887,11 +902,11 @@ class _DisplayPageState extends State<DisplayPage> {
                                             Container(
                                               padding: const EdgeInsets
                                                   .fromLTRB(0, 5, 0, 0),
-                                              child: Text("Time: ${snapshot
-                                                  .data![index]['reading_time']}",
+                                              child: Text("Date: ${snapshot
+                                                  .data![index]['date']}",
                                                 style: const TextStyle(
-                                                  fontWeight: FontWeight.w500,
-                                                  color: secondarycolor,
+                                                  fontWeight: FontWeight.bold,
+                                                  color: Colors.black,
                                                 ),),),
 
                                             subtitle:
@@ -901,7 +916,12 @@ class _DisplayPageState extends State<DisplayPage> {
                                               crossAxisAlignment: CrossAxisAlignment
                                                   .start,
                                               children: <Widget>[
-
+                                                Text("Time: ${snapshot
+                                                    .data![index]['reading_time']}",
+                                                  style: const TextStyle(
+                                                    color: secondarycolor,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),),
                                                 Text("Temperature: ${snapshot
                                                     .data![index]['Temp']} °C",
                                                   style: const TextStyle(
@@ -993,11 +1013,11 @@ class _DisplayPageState extends State<DisplayPage> {
                                             Container(
                                               padding: const EdgeInsets
                                                   .fromLTRB(0, 5, 0, 0),
-                                              child: Text("Time: ${snapshot
-                                                  .data![index]['reading_time']}",
+                                              child: Text("Date: ${snapshot
+                                                  .data![index]['date']}",
                                                 style: const TextStyle(
-                                                  fontWeight: FontWeight.w500,
-                                                  color: secondarycolor,
+                                                  fontWeight: FontWeight.bold,
+                                                  color: Colors.black,
                                                 ),),),
 
                                             subtitle:
@@ -1007,7 +1027,12 @@ class _DisplayPageState extends State<DisplayPage> {
                                               crossAxisAlignment: CrossAxisAlignment
                                                   .start,
                                               children: <Widget>[
-
+                                                Text("Time: ${snapshot
+                                                    .data![index]['reading_time']}",
+                                                  style: const TextStyle(
+                                                    color: secondarycolor,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),),
                                                 Text("Temperature: ${snapshot
                                                     .data![index]['Temp']} °C",
                                                   style: const TextStyle(
@@ -1048,8 +1073,9 @@ class _DisplayPageState extends State<DisplayPage> {
 
                         ),
 
+                        const SizedBox(height: 30,),
 
-                        const SizedBox(height: 20,),
+                        buildElevatedButton(),
 
                       ],
 
@@ -1059,7 +1085,7 @@ class _DisplayPageState extends State<DisplayPage> {
                     Column(
                       children: <Widget>[
                         const Text(
-                          "Wednesday, 4/06/22",
+                          "Wednesday",
                           style: TextStyle(
                             color: primarycolor,
                             fontWeight: FontWeight.w500,
@@ -1073,6 +1099,7 @@ class _DisplayPageState extends State<DisplayPage> {
                               border: Border(top: BorderSide(color: Colors.grey, width: 0.2))
                           ),
                         ),
+                        const SizedBox(height:10,),
                         const Text(
                           "Stagnant Water",
                           style: TextStyle(
@@ -1123,11 +1150,11 @@ class _DisplayPageState extends State<DisplayPage> {
                                             Container(
                                               padding: const EdgeInsets
                                                   .fromLTRB(0, 5, 0, 0),
-                                              child: Text("Time: ${snapshot
-                                                  .data![index]['reading_time']}",
+                                              child: Text("Date: ${snapshot
+                                                  .data![index]['date']}",
                                                 style: const TextStyle(
-                                                  fontWeight: FontWeight.w500,
-                                                  color: secondarycolor,
+                                                  fontWeight: FontWeight.bold,
+                                                  color: Colors.black,
                                                 ),),),
 
                                             subtitle:
@@ -1137,7 +1164,12 @@ class _DisplayPageState extends State<DisplayPage> {
                                               crossAxisAlignment: CrossAxisAlignment
                                                   .start,
                                               children: <Widget>[
-
+                                                Text("Time: ${snapshot
+                                                    .data![index]['reading_time']}",
+                                                  style: const TextStyle(
+                                                    color: secondarycolor,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),),
                                                 Text("Temperature: ${snapshot
                                                     .data![index]['Temp']} °C",
                                                   style: const TextStyle(
@@ -1229,11 +1261,11 @@ class _DisplayPageState extends State<DisplayPage> {
                                             Container(
                                               padding: const EdgeInsets
                                                   .fromLTRB(0, 5, 0, 0),
-                                              child: Text("Time: ${snapshot
-                                                  .data![index]['reading_time']} ",
+                                              child: Text("Date: ${snapshot
+                                                  .data![index]['date']}",
                                                 style: const TextStyle(
-                                                  fontWeight: FontWeight.w500,
-                                                  color: secondarycolor,
+                                                  fontWeight: FontWeight.bold,
+                                                  color: Colors.black,
                                                 ),),),
 
                                             subtitle:
@@ -1243,7 +1275,12 @@ class _DisplayPageState extends State<DisplayPage> {
                                               crossAxisAlignment: CrossAxisAlignment
                                                   .start,
                                               children: <Widget>[
-
+                                                Text("Time: ${snapshot
+                                                    .data![index]['reading_time']}",
+                                                  style: const TextStyle(
+                                                    color: secondarycolor,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),),
                                                 Text("Temperature: ${snapshot
                                                     .data![index]['Temp']} °C",
                                                   style: const TextStyle(
@@ -1284,8 +1321,9 @@ class _DisplayPageState extends State<DisplayPage> {
 
                         ),
 
+                        const SizedBox(height: 30,),
 
-                        const SizedBox(height: 20,),
+                        buildElevatedButton(),
 
                       ],
 
@@ -1295,7 +1333,7 @@ class _DisplayPageState extends State<DisplayPage> {
                     Column(
                       children: <Widget>[
                         const Text(
-                          "Thursday, 4/07/22",
+                          "Thursday",
                           style: TextStyle(
                             color: primarycolor,
                             fontWeight: FontWeight.w500,
@@ -1309,6 +1347,7 @@ class _DisplayPageState extends State<DisplayPage> {
                               border: Border(top: BorderSide(color: Colors.grey, width: 0.2))
                           ),
                         ),
+                        const SizedBox(height:10,),
                         const Text(
                           "Stagnant Water",
                           style: TextStyle(
@@ -1359,11 +1398,11 @@ class _DisplayPageState extends State<DisplayPage> {
                                             Container(
                                               padding: const EdgeInsets
                                                   .fromLTRB(0, 5, 0, 0),
-                                              child: Text("Time: ${snapshot
-                                                  .data![index]['reading_time']}",
+                                              child: Text("Date: ${snapshot
+                                                  .data![index]['date']}",
                                                 style: const TextStyle(
-                                                  fontWeight: FontWeight.w500,
-                                                  color: secondarycolor,
+                                                  fontWeight: FontWeight.bold,
+                                                  color: Colors.black,
                                                 ),),),
 
                                             subtitle:
@@ -1373,7 +1412,12 @@ class _DisplayPageState extends State<DisplayPage> {
                                               crossAxisAlignment: CrossAxisAlignment
                                                   .start,
                                               children: <Widget>[
-
+                                                Text("Time: ${snapshot
+                                                    .data![index]['reading_time']}",
+                                                  style: const TextStyle(
+                                                    color: secondarycolor,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),),
                                                 Text("Temperature: ${snapshot
                                                     .data![index]['Temp']} °C",
                                                   style: const TextStyle(
@@ -1465,11 +1509,11 @@ class _DisplayPageState extends State<DisplayPage> {
                                             Container(
                                               padding: const EdgeInsets
                                                   .fromLTRB(0, 5, 0, 0),
-                                              child: Text("Time: ${snapshot
-                                                  .data![index]['reading_time']}",
+                                              child: Text("Date: ${snapshot
+                                                  .data![index]['date']}",
                                                 style: const TextStyle(
-                                                  fontWeight: FontWeight.w500,
-                                                  color: secondarycolor,
+                                                  fontWeight: FontWeight.bold,
+                                                  color: Colors.black,
                                                 ),),),
 
                                             subtitle:
@@ -1479,7 +1523,12 @@ class _DisplayPageState extends State<DisplayPage> {
                                               crossAxisAlignment: CrossAxisAlignment
                                                   .start,
                                               children: <Widget>[
-
+                                                Text("Time: ${snapshot
+                                                    .data![index]['reading_time']}",
+                                                  style: const TextStyle(
+                                                    color: secondarycolor,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),),
                                                 Text("Temperature: ${snapshot
                                                     .data![index]['Temp']} °C",
                                                   style: const TextStyle(
@@ -1507,7 +1556,7 @@ class _DisplayPageState extends State<DisplayPage> {
 
                                   }
                                   // Error case
-                                  return const Text('Not Available Yet');
+                                  return const Text('Not Available');
                                 } else {
 
                                   return const Center(
@@ -1520,8 +1569,9 @@ class _DisplayPageState extends State<DisplayPage> {
 
                         ),
 
+                        const SizedBox(height: 30,),
 
-                        const SizedBox(height: 20,),
+                        buildElevatedButton(),
 
                       ],
 
@@ -1531,7 +1581,7 @@ class _DisplayPageState extends State<DisplayPage> {
                     Column(
                       children: <Widget>[
                         const Text(
-                          "Friday, 4/08/22",
+                          "Friday",
                           style: TextStyle(
                             color: primarycolor,
                             fontWeight: FontWeight.w500,
@@ -1545,6 +1595,7 @@ class _DisplayPageState extends State<DisplayPage> {
                               border: Border(top: BorderSide(color: Colors.grey, width: 0.2))
                           ),
                         ),
+                        const SizedBox(height:10),
                         const Text(
                           "Stagnant Water",
                           style: TextStyle(
@@ -1595,11 +1646,11 @@ class _DisplayPageState extends State<DisplayPage> {
                                             Container(
                                               padding: const EdgeInsets
                                                   .fromLTRB(0, 5, 0, 0),
-                                              child: Text("Time: ${snapshot
-                                                  .data![index]['reading_time']}",
+                                              child: Text("Date: ${snapshot
+                                                  .data![index]['date']}",
                                                 style: const TextStyle(
-                                                  fontWeight: FontWeight.w500,
-                                                  color: secondarycolor,
+                                                  fontWeight: FontWeight.bold,
+                                                  color: Colors.black,
                                                 ),),),
 
                                             subtitle:
@@ -1609,7 +1660,12 @@ class _DisplayPageState extends State<DisplayPage> {
                                               crossAxisAlignment: CrossAxisAlignment
                                                   .start,
                                               children: <Widget>[
-
+                                                Text("Time: ${snapshot
+                                                    .data![index]['reading_time']}",
+                                                  style: const TextStyle(
+                                                    color: secondarycolor,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),),
                                                 Text("Temperature: ${snapshot
                                                     .data![index]['Temp']} °C",
                                                   style: const TextStyle(
@@ -1701,11 +1757,11 @@ class _DisplayPageState extends State<DisplayPage> {
                                             Container(
                                               padding: const EdgeInsets
                                                   .fromLTRB(0, 5, 0, 0),
-                                              child: Text("Time: ${snapshot
-                                                  .data![index]['reading_time']}",
+                                              child: Text("Date: ${snapshot
+                                                  .data![index]['date']}",
                                                 style: const TextStyle(
-                                                  fontWeight: FontWeight.w500,
-                                                  color: secondarycolor,
+                                                  fontWeight: FontWeight.bold,
+                                                  color: Colors.black,
                                                 ),),),
 
                                             subtitle:
@@ -1715,7 +1771,12 @@ class _DisplayPageState extends State<DisplayPage> {
                                               crossAxisAlignment: CrossAxisAlignment
                                                   .start,
                                               children: <Widget>[
-
+                                                Text("Time: ${snapshot
+                                                    .data![index]['reading_time']}",
+                                                  style: const TextStyle(
+                                                    color: secondarycolor,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),),
                                                 Text("Temperature: ${snapshot
                                                     .data![index]['Temp']} °C",
                                                   style: const TextStyle(
@@ -1756,8 +1817,9 @@ class _DisplayPageState extends State<DisplayPage> {
 
                         ),
 
+                        const SizedBox(height: 30,),
 
-                        const SizedBox(height: 20,),
+                        buildElevatedButton(),
 
                       ],
 
