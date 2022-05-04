@@ -124,7 +124,7 @@ class _GraphsState extends State<Graphs> {
 
              InAppWebView(
               initialUrlRequest: URLRequest(
-                url: Uri.parse("http://h2ocapstone2022.ddns.net:9999/charts/temperature_chart.php"),
+                url: Uri.parse("https://h2ocapstone2022.ddns.net:9999/charts/temperature_chart.php"),
               ),
               initialOptions: InAppWebViewGroupOptions(
                android: AndroidInAppWebViewOptions(

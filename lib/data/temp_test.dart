@@ -18,7 +18,7 @@ class _tempTableState extends State<tempTable> {
   List<List<dynamic>> data = [];
 
   loadAsset() async {
-    final myData = await http.get(Uri.parse("http://h2ocapstone2022.ddns.net:9999/app_data/csv_files/temp.csv"));
+    final myData = await http.get(Uri.parse("https://h2ocapstone2022.ddns.net:9999/app_data/csv_files/temp.csv"));
     csv.CsvToListConverter converter = new csv.CsvToListConverter(eol: '\r\n', fieldDelimiter: ',');
     //List<List<dynamic>> csvTable = const CsvToListConverter().convert(myData);
     List<List> csvTable = converter.convert(myData.body);

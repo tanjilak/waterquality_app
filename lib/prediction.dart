@@ -17,7 +17,7 @@ class Prediction extends StatefulWidget {
 class _PredictionState extends State<Prediction> {
 
 Future<String> prediction() async{
-  final data = await http.get(Uri.parse("http://h2ocapstone2022.ddns.net:9999/python/LSTM/week%2001/monday/temp-pred-mean.txt"));
+  final data = await http.get(Uri.parse("https://h2ocapstone2022.ddns.net:9999/python/LSTM/week%2001/monday/temp-pred-mean.txt"));
   return data.body.toString();
 }
 

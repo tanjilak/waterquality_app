@@ -28,7 +28,7 @@ class _DisplayPageState extends State<DisplayPage> {
 
   //LATESt VALUE
   Future<List> getLatest() async{
-    var theUrl = "http://h2ocapstone2022.ddns.net:9999/app_data/latest_value.php";
+    var theUrl = "https://h2ocapstone2022.ddns.net:9999/app_data/latest_value.php";
     http.Response response = await http.get(Uri.parse(theUrl));
 
     //  var res = await http.get(Uri.parse(theUrl),headers: {"Accept:":"application/json"});
@@ -38,7 +38,7 @@ class _DisplayPageState extends State<DisplayPage> {
   }
 
   Future<List> getAll() async{
-    var theUrl = "http://h2ocapstone2022.ddns.net:9999/app_data/AllData.php";
+    var theUrl = "https://h2ocapstone2022.ddns.net:9999/app_data/AllData.php";
     http.Response response = await http.get(Uri.parse(theUrl));
 
     //  var res = await http.get(Uri.parse(theUrl),headers: {"Accept:":"application/json"});
@@ -50,7 +50,7 @@ class _DisplayPageState extends State<DisplayPage> {
   //different getmethods for each day
 //MONDAY
   Future<List> getMethod() async{
-    var theUrl = "http://h2ocapstone2022.ddns.net:9999/app_data/MondayStagnantWater.php";
+    var theUrl = "https://h2ocapstone2022.ddns.net:9999/app_data/MondayStagnantWater.php";
   http.Response response = await http.get(Uri.parse(theUrl));
 
   //  var res = await http.get(Uri.parse(theUrl),headers: {"Accept:":"application/json"});
@@ -59,7 +59,7 @@ class _DisplayPageState extends State<DisplayPage> {
   return data;
   }
   Future<List> getMethod2() async{
-    var theUrl = "http://h2ocapstone2022.ddns.net:9999/app_data/MondayFlowingWater.php";
+    var theUrl = "https://h2ocapstone2022.ddns.net:9999/app_data/MondayFlowingWater.php";
     http.Response response = await http.get(Uri.parse(theUrl));
 
     //  var res = await http.get(Uri.parse(theUrl),headers: {"Accept:":"application/json"});
@@ -70,7 +70,7 @@ class _DisplayPageState extends State<DisplayPage> {
 
   //Tuesday
   Future<List> getMethod3() async{
-    var theUrl = "http://h2ocapstone2022.ddns.net:9999/app_data/TuesdayStagnantWater.php";
+    var theUrl = "https://h2ocapstone2022.ddns.net:9999/app_data/TuesdayStagnantWater.php";
     http.Response response = await http.get(Uri.parse(theUrl));
 
     //  var res = await http.get(Uri.parse(theUrl),headers: {"Accept:":"application/json"});
@@ -79,7 +79,7 @@ class _DisplayPageState extends State<DisplayPage> {
     return data;
   }
   Future<List> getMethod4() async{
-    var theUrl = "http://h2ocapstone2022.ddns.net:9999/app_data/TuesdayFlowingWater.php";
+    var theUrl = "https://h2ocapstone2022.ddns.net:9999/app_data/TuesdayFlowingWater.php";
     http.Response response = await http.get(Uri.parse(theUrl));
 
     //  var res = await http.get(Uri.parse(theUrl),headers: {"Accept:":"application/json"});
@@ -90,7 +90,7 @@ class _DisplayPageState extends State<DisplayPage> {
 
   //Wednesday
   Future<List> getMethod5() async{
-    var theUrl = "http://h2ocapstone2022.ddns.net:9999/app_data/WednesdayStagnantWater.php";
+    var theUrl = "https://h2ocapstone2022.ddns.net:9999/app_data/WednesdayStagnantWater.php";
     http.Response response = await http.get(Uri.parse(theUrl));
 
     //  var res = await http.get(Uri.parse(theUrl),headers: {"Accept:":"application/json"});
@@ -99,7 +99,7 @@ class _DisplayPageState extends State<DisplayPage> {
     return data;
   }
   Future<List> getMethod6() async{
-    var theUrl = "http://h2ocapstone2022.ddns.net:9999/app_data/WednesdayFlowingWater.php";
+    var theUrl = "https://h2ocapstone2022.ddns.net:9999/app_data/WednesdayFlowingWater.php";
     http.Response response = await http.get(Uri.parse(theUrl));
 
     //  var res = await http.get(Uri.parse(theUrl),headers: {"Accept:":"application/json"});
@@ -110,7 +110,7 @@ class _DisplayPageState extends State<DisplayPage> {
 
   //Thursday
   Future<List> getMethod7() async{
-    var theUrl = "http://h2ocapstone2022.ddns.net:9999/app_data/ThursdayStagnantWater.php";
+    var theUrl = "https://h2ocapstone2022.ddns.net:9999/app_data/ThursdayStagnantWater.php";
     http.Response response = await http.get(Uri.parse(theUrl));
 
     //  var res = await http.get(Uri.parse(theUrl),headers: {"Accept:":"application/json"});
@@ -119,7 +119,7 @@ class _DisplayPageState extends State<DisplayPage> {
     return data;
   }
   Future<List> getMethod8() async{
-    var theUrl = "http://h2ocapstone2022.ddns.net:9999/app_data/ThursdayFlowingWater.php";
+    var theUrl = "https://h2ocapstone2022.ddns.net:9999/app_data/ThursdayFlowingWater.php";
     http.Response response = await http.get(Uri.parse(theUrl));
 
     //  var res = await http.get(Uri.parse(theUrl),headers: {"Accept:":"application/json"});
@@ -130,7 +130,7 @@ class _DisplayPageState extends State<DisplayPage> {
 
   //Friday
   Future<List> getMethod9() async{
-    var theUrl = "http://h2ocapstone2022.ddns.net:9999/app_data/FridayStagnantWater.php";
+    var theUrl = "https://h2ocapstone2022.ddns.net:9999/app_data/FridayStagnantWater.php";
     http.Response response = await http.get(Uri.parse(theUrl));
 
     //  var res = await http.get(Uri.parse(theUrl),headers: {"Accept:":"application/json"});
@@ -139,7 +139,7 @@ class _DisplayPageState extends State<DisplayPage> {
     return data;
   }
   Future<List> getMethod10() async{
-    var theUrl = "http://h2ocapstone2022.ddns.net:9999/app_data/FridayFlowingWater.php";
+    var theUrl = "https://h2ocapstone2022.ddns.net:9999/app_data/FridayFlowingWater.php";
     http.Response response = await http.get(Uri.parse(theUrl));
 
     //  var res = await http.get(Uri.parse(theUrl),headers: {"Accept:":"application/json"});
