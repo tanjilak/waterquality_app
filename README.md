@@ -79,12 +79,4 @@ I would also try to use different application languages. Next time, I might use 
 
 ## Acknowledgments
 
-Due to this being my first application, I took inspiration and help from many tutorials online. <br/>
-
-Sign in and Sign Up pages: <br/>
-Firebase Authentication:<br/>
-Flutter Connection to PHP files & SQL Database:<br/>
-Flutter Connection to CSV files:<br/>
-Machine Learning Algorithm: <br/>
-
 
