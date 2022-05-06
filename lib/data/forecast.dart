@@ -40,7 +40,7 @@ class _ForecastState extends State<Forecast> {
               fontWeight: FontWeight.bold,
               fontSize: 20,),
           ),
-          Image.network('https://h2ocapstone2022.ddns.net:9999/python/LSTM/week%2001/fullweek/ph-pred.png'),
+          Image.network('https://h2ocapstone2022.ddns.net:9999/python/LSTM/week01/fullweek/ph-pred.png'),
           const Prediction2(),
           Container(
             height: 10,
@@ -54,7 +54,7 @@ class _ForecastState extends State<Forecast> {
               fontSize: 20,),
           ),
 
-          Image.network('https://h2ocapstone2022.ddns.net:9999/python/LSTM/week%2001/fullweek/temp-pred.png'),
+          Image.network('https://h2ocapstone2022.ddns.net:9999/python/LSTM/week01/fullweek/temp-pred.png'),
           const Prediction(),
           Container(
             height: 10,
@@ -67,7 +67,7 @@ class _ForecastState extends State<Forecast> {
               fontWeight: FontWeight.bold,
               fontSize: 20,),
           ),
-          Image.network('https://h2ocapstone2022.ddns.net:9999/python/LSTM/week%2001/fullweek/orp-pred.png'),
+          Image.network('https://h2ocapstone2022.ddns.net:9999/python/LSTM/week01/fullweek/orp-pred.png'),
           const Prediction3(),
         ],
       ),);

@@ -35,7 +35,7 @@ class _DeviceDetailsState extends State<DeviceDetails> {
     String name = nameController.text;
     String location = locationController.text;
 
-    var url = "http://h2ocapstone2022.ddns.net:9999/device1.php";
+    var url = "https://h2ocapstone2022.ddns.net:9999/device1.php";
     var data = {'name': name, 'location': location};
     http.Response response = await http.post(Uri.parse(url), body: json.encode(data));
 
