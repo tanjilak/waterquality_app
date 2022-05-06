@@ -31,7 +31,7 @@ Users should be able to:
 
 The GUI interface of the application is displayed below <br/>
 
-![untitled-project@2x](https://user-images.githubusercontent.com/70307218/167204247-c89202ca-aff7-493f-bc90-0659831f56ec.png)
+![Water Quality Monitoring App](https://user-images.githubusercontent.com/70307218/167204247-c89202ca-aff7-493f-bc90-0659831f56ec.png)
 
 ## My Process
 
