@@ -39,7 +39,7 @@ The GUI interface of the application is displayed below <br/>
 
 Please visit our website for a better understanding of the whole project and all the team members who contributed!
 
-- [H2O - Water Quality Monitoring] (https://h2owaterquality.com)
+- Website - [H2O - Water Quality Monitoring System](https://h2owaterquality.com/)
 
 ### Built with
 
