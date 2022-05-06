@@ -1,6 +1,6 @@
 # Smart Water Quality Monitoring App
 
-This is a real time water quality tracking application. It can connect to a database that has real time water data stored inside. 
+This is a real time water quality tracking application. It can connect to a database that has real time water data stored inside. This was completed for a 2021-2022 Capstone course.
 
 ## Table of contents
 
@@ -13,7 +13,6 @@ This is a real time water quality tracking application. It can connect to a data
   - [What I Learned](#what-i-learned)
   - [Continued Development](#continued-development)
 - [Author](#author)
-- [Acknowledgments](#acknowledgments)
 
 
 ## Overview
@@ -23,25 +22,24 @@ This is a real time water quality tracking application. It can connect to a data
 Users should be able to:
 
 - Sign up and sign in for their own profile
-- Connect to a Raspberry PI device
+- Connect to an Arduino device
 - See real time data for pH, Temperature, and ORP values for water flowing out of a sink
 - Sign out and have their information saved
+- See predicted values for the next week
 
 ### Application Layout
 
-Users will see a welcome page after clicking the application. <br/>
-![screenshot](https://user-images.githubusercontent.com/70307218/156902890-dea8ebd4-7685-448c-9e75-3c5b715ff176.png)
+The GUI interface of the application is displayed below <br/>
 
-The water quality data is formatted as shown below: <br/>
-![screenshot_20220305-175420](https://user-images.githubusercontent.com/70307218/156902880-511aee97-2de7-491a-8852-43b8e4f9b3b8.png)
+![untitled-project@2x](https://user-images.githubusercontent.com/70307218/167204247-c89202ca-aff7-493f-bc90-0659831f56ec.png)
 
+## My Process
 
 ### Links
 
-- Website : 
-- App Demo Video : 
+Please visit our website for a better understanding of the whole project and all the team members who contributed!
 
-## My Process
+- Website : h2owaterquality.com
 
 ### Built with
 
@@ -64,19 +62,15 @@ SELECT ph_values FROM data <br/>
    
 would only show ph column from the 'data' table when the week_id is only '1'.  
 
-
 ### Continued Development
 
 For future projects, I would love to get a better understanding of SQL and actually analyzing more of the data. Incorporating SQL techniques for the database would improve the application. <br/>
 
-
-
-I would also try to use different application languages. Next time, I might use JAVA instead of Flutter for a better understanding of mobile applications. 
+I would also try to use different application languages. Next time, I might use React Native or Xcode instead of Flutter for a better understanding of mobile applications. 
 
 ## Author
 
 - Website - [Tanjila Kabir](https://tanjilak.github.io/)
 
-## Acknowledgments
 
 
