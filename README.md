@@ -70,7 +70,7 @@ I would also try to use different application languages. Next time, I might use 
 
 ## Author
 
-- Website - [Tanjila Kabir](https://tanjilak.github.io/)
+- Website - [Tanjila Kabir](https://tanjilak.github.io/Tanjila)
 
 
 
