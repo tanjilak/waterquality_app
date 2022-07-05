@@ -25,7 +25,7 @@ Users should be able to:
 - Connect to an Arduino device
 - See real time data for pH, Temperature, and ORP values for water flowing out of a sink
 - Sign out and have their information saved
-- See predicted values for the next week
+- See predicted values for the next week (using LSTM for the machine learning algorithm)
 
 ### Application Layout
 
@@ -50,27 +50,22 @@ Please visit our website for a better understanding of the whole project and all
 
 ### What I Learned
 
-I gained a wide understanding of Flutter and Dart syntax. <br/>
+I gained a wide understanding of Flutter and Dart syntax. I was introduced to multiple OOP concepts during this project. <br/> 
 
 Connecting to a database was very confusing for me, at least from the beginning. <br/>
 
-I was able to understand SQL commands to connect to php files and even insert new data into tables. <br/>
-For example, <br/>
-
-SELECT ph_values FROM data <br/>
-   WHERE week_id=1 <br/>
-   
-would only show ph column from the 'data' table when the week_id is only '1'.  
+I was able to understand SQL commands to connect to php files and even inserted new data into tables. I acquired a knowledge on how to analyze and organize the data.  <br/>
+My understanding of programming and problem solving improved when I was faced with coding errors. 
 
 ### Continued Development
 
-For future projects, I would love to get a better understanding of SQL and actually analyzing more of the data. Incorporating SQL techniques for the database would improve the application. <br/>
+For future projects, I would love to get a better understanding of SQL and analyzing more of the data. Incorporating more SQL techniques for the database would improve the application. <br/>
 
 I would also try to use different application languages. Next time, I might use React Native or Xcode instead of Flutter for a better understanding of mobile applications. 
 
 ## Author
 
-- Website - [Tanjila Kabir](https://tanjilak.github.io/Tanjila)
+- Website - [Tanjila Kabir](https://tanjilak.github.io)
 
 
 
