@@ -33,10 +33,6 @@ The GUI interface of the application is displayed below <br/>
 
 ![Water Quality Monitoring App](https://user-images.githubusercontent.com/70307218/167204247-c89202ca-aff7-493f-bc90-0659831f56ec.png) <br/>
 
-The algorithm and flow diagram of the user's interaction with the application is shown below. <br/>
-
-![flowchart](https://user-images.githubusercontent.com/70307218/177649155-86604dfd-937e-46ac-8aeb-488c53895ec1.png) <br/>
-
 ## My Process
 
 ### Links
