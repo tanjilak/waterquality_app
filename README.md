@@ -55,6 +55,7 @@ I gained a wide understanding of Flutter and Dart syntax. I was introduced to mu
 Connecting to a database was very confusing for me, at least from the beginning. <br/>
 
 I was able to understand SQL commands to connect to php files and even inserted new data into tables. I acquired a knowledge on how to analyze and organize the data.  <br/>
+
 My understanding of programming and problem solving improved when I was faced with coding errors. 
 
 ### Continued Development
